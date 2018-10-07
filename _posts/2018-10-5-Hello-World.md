@@ -62,4 +62,4 @@ I wanted to pursue a Masters degree soon after finishing my Bachelor, in 2007. I
 Almost two years later I'm in my last semester and if everything works as planned, **I will be graduating in December**.
 
 ### What's Next
-I did not expect for this first post to be this long but I felt I had to share my story before I can start sharing my work. In the next post, I will be sharing
+I did not expect for this first post to be this long but I felt I had to share my story before I can start sharing my work. In the next post, I will be sharing an analysis of ATP tennis competitions using Python, matplotlib and seaborn visualization libraries. _Forgot to mention I'm a big tennis fan!_
