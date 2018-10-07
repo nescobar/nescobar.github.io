@@ -52,11 +52,14 @@ This new approach was successful and we were able to gradually deliver better Da
 ### Back Home: New Perspective
 In 2015 we took the decision to go back home (Paraguay). We had been living abroad for many years and after my second daughter was born in London, felt that we needed to be closer to the family. 
 
-The company where I had been working had a local operation in Paraguay so my first choice was to contact them. They were looking for someone to lead the Loyalty and Retention Postpaid team and offered me this position. First, I hesitated because it was not what I was hoping for. My idea, naturally, was to continue working on DWH/BI projects but there was no vacancy on that area. After some careful thought, I decided to take the position and use my data passion and experience in the field to support initiatives with a different perspective.
+The company where I had been working had a local operation in Paraguay so my first choice was to contact them. They were looking for someone to lead the Loyalty and Retention Postpaid team and offered me this position. First, I hesitated because it was not what I was hoping for. My idea, naturally, was to continue working on DWH/BI projects but there was no vacancy on that area. After some careful thought, I decided to take the position and _use my data passion and experience in the field to support initiatives with a different perspective_.
 
-It's been three years since we arrived and I'm glad I accepted the challenge. Last year, after working on great projects to increase loyalty and reduce churn, I was promoted to Offer Strategic Manager in the Prepaid segment. Here I can still use my data skills to evaluate new potential offers, work on pricing models, segmented offers and understanding customer behavior.
+It's been three years since we arrived and I'm glad I accepted the challenge. Last year, after working on great projects to increase loyalty and reduce churn, I was promoted to Offer Strategic Manager in the Prepaid segment. Here I can still _use my data skills_ to evaluate new potential offers, work on pricing models, segmented offers and understanding customer behavior.
 
 ### Back to (Virtual) School
+I wanted to pursue a Masters degree soon after finishing my Bachelor, in 2007. I'm glad I didn't at that time because I was not really sure what I wanted to work on. Almost ten years later, in 2016, I applied to the online **Masters in Data Science from the University of Indiana** and got accepted. It was a tough decision because I had to manage between my wife and two daughters and a full time (pretty intensive) job. Even so, I knew this is what I wanted and went for it!
 
+Almost two years later I'm in my last semester and if everything works as planned, **I will be graduating in December**.
 
 ### What's Next
+I did not expect for this first post to be this long but I felt I had to share my story before I can start sharing my work. In the next post, I will be sharing
