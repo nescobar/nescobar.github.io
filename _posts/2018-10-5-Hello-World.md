@@ -49,11 +49,14 @@ We had to put a hold on the project and decide on a new way forward. We realized
 
 This new approach was successful and we were able to gradually deliver better Data Warehouses across the region. 
 
-### Back Home. New Perspective
+### Back Home: New Perspective
 In 2015 we took the decision to go back home (Paraguay). We had been living abroad for many years and after my second daughter was born in London, felt that we needed to be closer to the family. 
 
+The company where I had been working had a local operation in Paraguay so my first choice was to contact them. They were looking for someone to lead the Loyalty and Retention Postpaid team and offered me this position. First, I hesitated because it was not what I was hoping for. My idea, naturally, was to continue working on DWH/BI projects but there was no vacancy on that area. After some careful thought, I decided to take the position and use my data passion and experience in the field to support initiatives with a different perspective.
 
+It's been three years since we arrived and I'm glad I accepted the challenge. Last year, after working on great projects to increase loyalty and reduce churn, I was promoted to Offer Strategic Manager in the Prepaid segment. Here I can still use my data skills to evaluate new potential offers, work on pricing models, segmented offers and understanding customer behavior.
 
-### Back to Academy
+### Back to (Virtual) School
+
 
 ### What's Next
