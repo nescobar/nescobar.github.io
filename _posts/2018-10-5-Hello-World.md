@@ -57,9 +57,9 @@ The company where I had been working had a local operation in Paraguay so my fir
 It's been three years since we arrived and I'm glad I accepted the challenge. Last year, after working on great projects to increase loyalty and reduce churn, I was promoted to Offer Strategic Manager in the Prepaid segment. Here I can still _use my data skills_ to evaluate new potential offers, work on pricing models, segmented offers and understanding customer behavior.
 
 ### Back to (online) School
-I wanted to pursue a Masters degree right after finishing my Bachelor in 2007. I'm glad I didn't at that time because I was not really sure what I wanted to work on. Almost ten years later, in 2016, I applied to the online **Masters in Data Science from the University of Indiana** and got accepted. It was a tough decision because I had to manage my time between my family and a full time (pretty intensive) job. Even so, I knew this is what I wanted to do and went for it!
+I wanted to pursue a Masters degree right after finishing my Bachelor in 2007. I'm glad I didn't at that time because I was not really sure what I wanted to work on. Almost ten years later, in 2016, I applied to the online **[Masters in Data Science from the University of Indiana](https://www.sice.indiana.edu/graduate/degrees/data-science/)** and got accepted. It was a tough decision because I had to manage my time between my family and a full time (pretty intensive) job. Even so, I knew this is what I wanted to do and went for it!
 
 Almost two years later I'm in my last semester and if everything works as planned, **I will be graduating in December**.
 
 ### What's Next?
-I did not expect for this first post to be this long but I felt I had to share my journey before I go deeper into the subject. In the _next post_, I will be going over an analysis of ATP tennis competitions using _Python_, _matplotlib_ and _seaborn_ visualization libraries. _Forgot to mention I'm a big tennis fan!_
+I did not expect for this first post to be this long but I felt I had to share my journey before I go deeper into the subject. In the _next post_, I will be analyzing a dataset of ATP tennis competitions using _Python_ _matplotlib_ and _seaborn_ visualization libraries. _Forgot to mention I'm a big tennis fan!_
