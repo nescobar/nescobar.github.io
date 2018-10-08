@@ -32,7 +32,7 @@ tennis_df['tourney_year'] = tennis_df.tourney_date.astype(str).str[:4]
 
 #### Looking at distribution of key variables
 ```python
-dimensions = ['winner_rank','loser_rank','winner_age','loser_age','winner_ht','loser_ht','w_svpt','l_svpt]
+dimensions = ['winner_rank','loser_rank','winner_age','loser_age','winner_ht','loser_ht','w_svpt','l_svpt']
 
 plt.figure(1, figsize=(20,12))
 
