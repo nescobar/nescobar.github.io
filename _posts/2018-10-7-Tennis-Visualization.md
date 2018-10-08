@@ -29,11 +29,12 @@ plt.rcParams.update({'font.size': 14})
 ```
 
 ### Load the data
+
 ```python
 path ='tennis_atp_data' 
 files = glob.glob(path + "/*.csv")
 tennis_df = pd.concat((pd.read_csv(f) for f in files))
-```python
+```
 
 
 
