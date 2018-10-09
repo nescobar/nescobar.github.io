@@ -57,13 +57,14 @@ In this graph we are using a [scatter plot](https://matplotlib.org/api/_as_gen/m
 
 #### Distribution of aces by surface type
 
-```python
+{% highlight python linenos %}
 tennis_df_h = tennis_df[~np.isnan(tennis_df['w_ace']) & (tennis_df['tourney_level'].isin(['G','M'])) ].copy()
 
 g = sns.boxplot(x="surface", y="w_ace", data=tennis_df_h)
 
 g.set(xlabel='Surface', ylabel='Aces')
-```
+{% endhighlight %}
+
 ![Box Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/3_box_plot_surface.png "Box plot of aces by surface type")
 
 This box plot helps us compare the distribution of aces in each surface type. We can see, for example, that the median and maximum number of aces is much higher in grass than in clay.
