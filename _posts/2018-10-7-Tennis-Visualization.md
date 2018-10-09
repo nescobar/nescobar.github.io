@@ -158,11 +158,11 @@ def plot_history_player(player):
     
 plot_history_player('Roger Federer')
 ```
-![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/7_rafael_nadal_evolution.png "Roger Federer's wins over time")
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/7_roger_federer_evolution.png "Roger Federer's wins over time")
 
 Now, let's see how Nadal did over the years..
 
 ```python
 plot_history_player('Rafael Nadal')
 ```
-![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/7_roger_federer_evolution.png "Roger Federer's wins over time")
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/7_rafael_nadal_evolution.png "Rafael Nadal's wins over time")
