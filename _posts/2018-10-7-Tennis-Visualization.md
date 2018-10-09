@@ -39,7 +39,6 @@ dimensions = ['winner_rank','loser_rank','winner_age','loser_age','winner_ht',
 'loser_ht','w_svpt','l_svpt']
 
 plt.figure(1, figsize=(20,12))
-
 for i in range(1,9):
     plt.subplot(2,4,i)
     tennis_df[dimensions[i-1]].plot(kind='hist', title=dimensions[i-1])
@@ -92,8 +91,8 @@ for k,v in countries.items():
     plt.subplot(1,5,i)
     s = tennis_df[(tennis_df['tourney_level'] == 'G') & (tennis_df['winner_ioc'].isin([k]))].groupby(['tourney_year','winner_ioc'], as_index=False).agg('count')
     plt.plot(s['tourney_year'], s['tourney_id'], color=colors[i-1], linestyle='dashed', marker='o', markerfacecolor='blue', markersize=2)
-    plt.ylabel('Number of Wins')
-    plt.xlabel('Year')
+    if i==1:
+        plt.ylabel('Number of Wins')
     plt.title(v+' in GS')
     i=i+1
     
@@ -153,7 +152,6 @@ def plot_history_player(player):
     plt.plot(pldf_2[pldf_2['tourney_level']=='F']['tourney_year'], pldf_2[pldf_2['tourney_level']=='F']['count'], linestyle='dotted')
     plt.plot(pldf_2[pldf_2['tourney_level']=='D']['tourney_year'], pldf_2[pldf_2['tourney_level']=='D']['count'], linestyle='dotted')
     plt.plot(pldf_2[pldf_2['tourney_level']=='A']['tourney_year'], pldf_2[pldf_2['tourney_level']=='A']['count'], linestyle='dotted')
-
     plt.legend(['Grand_Slams', 'Masters', 'Tour_Finals', 'Davis_Cup', 'ATP'], loc='upper right', prop={'size': 10})
     
 plot_history_player('Roger Federer')
@@ -228,7 +226,6 @@ def plot_effectiveness(player):
     pll.columns = ['tourney_year','surface','loses']
 
     dfs = (pww,pll)
-
     dfs_concat = pd.concat(dfs)
 
     dfs_final = dfs_concat.fillna(0).groupby(['tourney_year','surface']).agg({'wins':'sum','loses':'sum'}).reset_index()
