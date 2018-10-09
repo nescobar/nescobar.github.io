@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Analysis of ATP Tennis Competitions
+title: Analyzing 50 years of Tennis
 categories: data visualization
 tags: 'data_visualization, seaborn, matplotlib'
 published: true
@@ -66,7 +66,7 @@ for i in range(1,5):
 
 ![Scatter Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/2_scatter_plot.png "Scatter plot of Winners' Rankings")
 
-In this graph we are using a [scatter plot](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html) to represent rankings of players that won Grand Slam finals in each year. 
+In this graph we are using a [scatter plot](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html) to represent rankings of players that won Grand Slam finals in each year. The size of the bubble indicates the ranking of the player that lost the match (the smaller the bubble, the better the ranking).
 
 #### Distribution of aces by surface type
 
@@ -78,6 +78,8 @@ g = sns.boxplot(x="surface", y="w_ace", data=tennis_df_h)
 g.set(xlabel='Surface', ylabel='Aces')
 ```
 ![Box Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/3_box_plot_surface.png "Box plot of aces by surface type")
+
+This box plot helps us compare the distribution of aces in each surface type. We can see, for example, that the median and maximum number of aces is much higher in grass than in clay.
 
 #### Evolution of specific countries based on their players wins'
 
@@ -96,4 +98,29 @@ plt.title('Argentina in GS')
 
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/4_plots_countries.png "Evolution of specific countries based on their players wins")
+
+#### Players with Most Aces and Double Falts
+```python
+# Create dataframe with details on aces by winners of each match
+sw = tennis_df.groupby(['winner_name']).agg({'w_ace':'sum'}).fillna(0).sort_values(['w_ace'], ascending=False)
+
+# Create dataframe with details on aces by losers of each match
+sl = tennis_df.groupby(['loser_name']).agg({'l_ace':'sum'}).fillna(0).sort_values(['l_ace'], ascending=False)
+
+dfs = [sw,sl]
+
+r = pd.concat(dfs).reset_index().fillna(0)
+
+# Derive new column with total number of aces
+r['aces'] = r['l_ace']+r['w_ace']
+
+final = r.groupby('index').agg({'aces':'sum'}).sort_values('aces',ascending=False).head(10)
+final = final.reset_index()
+final.columns = ['Player','Aces']
+final = final.sort_values('Aces',ascending=True)
+final.plot('Player','Aces', kind='barh', title='Players with Most Aces', legend=False)
+```
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/5_most_aces_barplot.png "Players with Most Aces")
+
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/6_most_df_barplot.png "Players with Most Double Falts")
 
