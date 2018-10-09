@@ -54,7 +54,7 @@ tourneys = ['Australian Open','Roland Garros','Wimbledon','US Open']
 tennis_df_1 = tennis_df[~np.isnan(tennis_df['winner_rank']) & (tennis_df['round']=='F')].copy()
 plt.figure(figsize=(20,4))
 
-# For tournament, plot a graph with evolution of rankings
+# For each tournament, plot a graph with evolution of rankings
 for i in range(1,5):
     plt.subplot(1,4,i)
     plt.title(tourneys[i-1])
@@ -64,8 +64,36 @@ for i in range(1,5):
     plt.ylabel('Winners' Ranking')
 ```
 
-![Scatter Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/1_scatter_plot.png "Scatter plot of Winners' Rankings")
+![Scatter Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/2_scatter_plot.png "Scatter plot of Winners' Rankings")
 
 In this graph we are using a [scatter plot](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html) to represent rankings of players that won Grand Slam finals in each year. 
 
-#### 
+#### Distribution of aces by surface type
+
+```python
+tennis_df_h = tennis_df[~np.isnan(tennis_df['w_ace']) & (tennis_df['tourney_level'].isin(['G','M'])) ].copy()
+
+g = sns.boxplot(x="surface", y="w_ace", data=tennis_df_h)
+
+g.set(xlabel='Surface', ylabel='Aces')
+```
+![Box Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/3_box_plot_surface.png "Box plot of aces by surface type")
+
+#### Evolution of specific countries based on their players wins'
+
+```python
+plt.figure(figsize=(20,4))
+
+plt.subplot(1,5,1)
+
+s = tennis_df[(tennis_df['tourney_level'] == 'G') & (tennis_df['winner_ioc'].isin(['ARG']))].groupby(['tourney_year','winner_ioc'], as_index=False).agg('count')
+
+plt.plot(s['tourney_year'], s['tourney_id'], color='blue', linestyle='dashed', marker='o', markerfacecolor='blue', markersize=2)
+
+plt.ylabel('Number of Wins')
+plt.xlabel('Year')
+plt.title('Argentina in GS')
+
+```
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/4_plots_countries.png "Evolution of specific countries based on their players wins")
+
