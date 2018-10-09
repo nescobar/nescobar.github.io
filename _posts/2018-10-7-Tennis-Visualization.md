@@ -48,8 +48,20 @@ for i in range(1,9):
 
 #### Evolution of winners' rankings in Grand Slam finals
 
-<script src="https://gist.github.com/nescobar/50515e7ed37dc4ed0ab04c4ab5bc9df5.js"></script>
+```python
+tourneys = ['Australian Open','Roland Garros','Wimbledon','US Open']
 
+tennis_df_1 = tennis_df[~np.isnan(tennis_df['winner_rank']) & (tennis_df['round']=='F')].copy()
+plt.figure(figsize=(20,4))
+
+for i in range(1,5):
+    plt.subplot(1,4,i)
+    plt.title(tourneys[i-1])
+    plt.scatter(tennis_df_1[tennis_df_1['tourney_name']==tourneys[i-1]]['tourney_year'],tennis_df_1[tennis_df_1['tourney_name']==tourneys[i-1]]['winner_rank'], s=tennis_df_1['loser_rank'])
+    plt.gca().invert_yaxis()
+    plt.xlabel('Year')
+    plt.ylabel('Winner Ranking')
+```
 
 ![Scatter Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/2_scatter_plot.png "Scatter plot of Winners' Rankings")
 
@@ -57,13 +69,13 @@ In this graph we are using a [scatter plot](https://matplotlib.org/api/_as_gen/m
 
 #### Distribution of aces by surface type
 
-{% highlight python linenos %}
+```python
 tennis_df_h = tennis_df[~np.isnan(tennis_df['w_ace']) & (tennis_df['tourney_level'].isin(['G','M'])) ].copy()
 
 g = sns.boxplot(x="surface", y="w_ace", data=tennis_df_h)
 
 g.set(xlabel='Surface', ylabel='Aces')
-{% endhighlight %}
+```
 
 ![Box Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/3_box_plot_surface.png "Box plot of aces by surface type")
 
@@ -145,5 +157,12 @@ def plot_history_player(player):
     plt.legend(['Grand_Slams', 'Masters', 'Tour_Finals', 'Davis_Cup', 'ATP'], loc='upper right', prop={'size': 10})
     
 plot_history_player('Roger Federer')
+```
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/7_rafael_nadal_evolution.png "Roger Federer's wins over time")
+
+Now, let's see how Nadal did over the years..
+
+```python
+plot_history_player('Rafael Nadal')
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/7_roger_federer_evolution.png "Roger Federer's wins over time")
