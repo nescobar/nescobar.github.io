@@ -47,22 +47,9 @@ for i in range(1,9):
 ![Histograms]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/1_histograms.png "Histograms of key variables")
 
 #### Evolution of winners' rankings in Grand Slam finals
-```python
-tourneys = ['Australian Open','Roland Garros','Wimbledon','US Open']
 
-# New dataframe that stores final matches with valid winners' rankings
-tennis_df_1 = tennis_df[~np.isnan(tennis_df['winner_rank']) & (tennis_df['round']=='F')].copy()
-plt.figure(figsize=(20,4))
+<script src="https://gist.github.com/nescobar/50515e7ed37dc4ed0ab04c4ab5bc9df5.js"></script>
 
-# For each tournament, plot a graph with evolution of rankings
-for i in range(1,5):
-    plt.subplot(1,4,i)
-    plt.title(tourneys[i-1])
-    plt.scatter(tennis_df_1[tennis_df_1['tourney_name']==tourneys[i-1]]['tourney_year'],tennis_df_1[tennis_df_1['tourney_name']==tourneys[i-1]]['winner_rank'], s=tennis_df_1['loser_rank'])
-    plt.gca().invert_yaxis()
-    plt.xlabel('Year')
-    plt.ylabel('Winners' Ranking')
-```
 
 ![Scatter Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/2_scatter_plot.png "Scatter plot of Winners' Rankings")
 
