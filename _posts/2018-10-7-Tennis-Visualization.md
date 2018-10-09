@@ -99,7 +99,7 @@ plt.title('Argentina in GS')
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/4_plots_countries.png "Evolution of specific countries based on their players wins")
 
-#### Players with Most Aces and Double Falts
+#### Players with most aces and double falts
 ```python
 # Create dataframe with details on aces by winners of each match
 sw = tennis_df.groupby(['winner_name']).agg({'w_ace':'sum'}).fillna(0).sort_values(['w_ace'], ascending=False)
@@ -107,8 +107,8 @@ sw = tennis_df.groupby(['winner_name']).agg({'w_ace':'sum'}).fillna(0).sort_valu
 # Create dataframe with details on aces by losers of each match
 sl = tennis_df.groupby(['loser_name']).agg({'l_ace':'sum'}).fillna(0).sort_values(['l_ace'], ascending=False)
 
+# Concatenate dataframes
 dfs = [sw,sl]
-
 r = pd.concat(dfs).reset_index().fillna(0)
 
 # Derive new column with total number of aces
@@ -122,9 +122,9 @@ final.plot('Player','Aces', kind='barh', title='Players with Most Aces', legend=
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/5_most_aces_barplot.png "Players with Most Aces")
 
-![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/6_most_df_barplot.png "Players with Most Double Falts")
+-> ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/6_most_df_barplot.png "Players with Most Double Falts") <-
 
-#### Roger Federer: Evolution over time
+#### Players' performance over time
 
 ```python
 from matplotlib.ticker import MultipleLocator, StrMethodFormatter
@@ -142,7 +142,6 @@ def plot_history_player(player):
 	# Use to define xticks as multiples of 2
     plt.gca().xaxis.set_major_locator(MultipleLocator(2))
     plt.gca().xaxis.set_major_formatter(StrMethodFormatter("{x:.0f}"))
-
     plt.title(player+' - Total Wins by Tournament Type by Year')
     plt.ylabel('Number of Wins')
     plt.xlabel('Year')
@@ -166,3 +165,239 @@ Now, let's see how Nadal did over the years..
 plot_history_player('Rafael Nadal')
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/7_rafael_nadal_evolution.png "Rafael Nadal's wins over time")
+
+#### Dominance
+##### Unique number of players that won Grand Slam and Master tournaments (by year)
+
+```python
+# Unique number of tournament winner per year from 2000 to 2016 (show dominance of top players)
+s = tennis_df[(tennis_df['round']=='F')&(tennis_df['tourney_level'].isin(['M','G']))].groupby(['tourney_year']).agg({'winner_name':'nunique'})
+t= s.reset_index()
+t.columns=['Year','Unique_Winners']
+t.plot('Year', 'Unique_Winners', kind='line', title='Unique # of Players that Won GS and Masters Finals', legend=False)
+```
+
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/8_unique_players_gs_evolution.png "Unique # of Players that Won GS and Masters Finals")
+
+##### Unique # of players that won Grand Slam tournaments (by periods)
+```python
+# Unique number of tournament winner per year from 2000 to 2016 (show dominance of top players)
+s = tennis_df[(tennis_df['round']=='F')&(tennis_df['tourney_level'].isin(['G']))&(tennis_df['tourney_year'].between('1975','1985'))].agg({'winner_name':'nunique'})
+t = tennis_df[(tennis_df['round']=='F')&(tennis_df['tourney_level'].isin(['G']))&(tennis_df['tourney_year'].between('1986','1996'))].agg({'winner_name':'nunique'})
+u = tennis_df[(tennis_df['round']=='F')&(tennis_df['tourney_level'].isin(['G']))&(tennis_df['tourney_year'].between('1997','2007'))].agg({'winner_name':'nunique'})
+v = tennis_df[(tennis_df['round']=='F')&(tennis_df['tourney_level'].isin(['G']))&(tennis_df['tourney_year'].between('2008','2018'))].agg({'winner_name':'nunique'})
+
+s['1975-1985'] = s['winner_name']
+s=s.drop('winner_name')
+t['1986-1996'] = t['winner_name']
+t=t.drop('winner_name')
+u['1997-2007'] = u['winner_name']
+u=u.drop('winner_name')
+v['2008-2018'] = v['winner_name']
+v=v.drop('winner_name')
+
+dfl = [s,t,u,v]
+dfs = pd.concat(dfl)
+x=pd.DataFrame(dfs, columns=['Unique_Count']).reset_index()
+x.columns=['Year range','Unique winners']
+ax=x.plot('Year range', 'Unique winners', kind='bar', title='Unique # of Players that Won GS Finals', legend=False)
+ax.set_ylim(0,20)
+
+for i, v in enumerate(x['Unique winners']):
+    ax.text(i-0.1, v+0.6, str(v))
+    
+```
+
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/9_unique_players_gs_ranges.png "Unique # of Players that Won GS Finals")
+
+#### Players' effectiveness by surface types
+Let's start with Roger again.
+
+```python
+from matplotlib.ticker import MultipleLocator, StrMethodFormatter
+
+def plot_effectiveness(player):
+    pw = tennis_df[(tennis_df['winner_name'] == player)].groupby(['tourney_year','surface'], as_index=False).agg(['count'])
+    pww = pw['tourney_id'].reset_index()
+
+    pl = tennis_df[(tennis_df['loser_name'] == player)].groupby(['tourney_year','surface'], as_index=False).agg(['count'])
+    pll = pl['tourney_id'].reset_index()
+
+    pww.columns = ['tourney_year','surface','wins']
+    pll.columns = ['tourney_year','surface','loses']
+
+    dfs = (pww,pll)
+
+    dfs_concat = pd.concat(dfs)
+
+    dfs_final = dfs_concat.fillna(0).groupby(['tourney_year','surface']).agg({'wins':'sum','loses':'sum'}).reset_index()
+
+    dfs_final['r_eff'] = np.where(dfs_final['loses']>0, dfs_final['wins']/(dfs_final['wins']+dfs_final['loses']), 1)
+    dfs_final['tourney_year'] = dfs_final['tourney_year'].astype(int)
+
+    g = sns.lmplot(x='tourney_year', y='r_eff', hue='surface', fit_reg=False, data=dfs_final, palette='viridis', hue_order=['Hard','Carpet','Grass','Clay'])
+    g.fig.suptitle(player + ' - Effectiveness')
+    g.set(xlabel='Year', ylabel='Effectiveness')
+    g.set(ylim=(-0.1,1.2))
+
+plot_effectiveness('Roger Federer')
+```
+
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/10_roger_federer_effectiveness.png "Roger Federer's effectiveness by surface type")
+
+Now let's see how Nadal did.
+
+```python
+plot_effectiveness('Rafael Nadal')
+```
+
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/11_rafael_nadal_effectiveness.png "Rafael Nadal's effectiveness by surface type")
+
+#### Age of Grand Slam champions over time
+
+```python
+# What is the average age of Grand Slams' players from 1968 up to 2016?
+tennis_df_win=tennis_df[tennis_df['tourney_level'].isin(['G'])&(tennis_df['round']=='F')].dropna(subset=['winner_age'])
+dfw = tennis_df_win[['tourney_year','tourney_name','winner_name','winner_age']]
+dfw.columns = ['tourney_year','tourney_name','player','age']
+
+dfs_final = dfw.groupby(['tourney_year','tourney_name']).agg({'age':'mean'}).reset_index()
+dfs_final_2 = dfs_final.groupby(['tourney_year']).agg({'age':'mean'}).reset_index()
+
+fig = plt.figure(figsize=(15,5))
+ax = fig.add_subplot(111)
+ax.set_prop_cycle(plt.cycler('color', plt.cm.jet(np.linspace(0, 1, 5))))
+
+plt.title('Age of Grand Slams Champions 1968-2018')
+plt.ylabel('Age')
+plt.xlabel('Year')
+
+plt.plot(dfs_final_2['tourney_year'], dfs_final_2['age'])
+plt.scatter(dfs_final[dfs_final['tourney_name']=='Australian Open']['tourney_year'], dfs_final[dfs_final['tourney_name']=='Australian Open']['age'], alpha=0.3)
+plt.scatter(dfs_final[dfs_final['tourney_name']=='Roland Garros']['tourney_year'], dfs_final[dfs_final['tourney_name']=='Roland Garros']['age'], alpha=0.3)
+plt.scatter(dfs_final[dfs_final['tourney_name']=='Wimbledon']['tourney_year'], dfs_final[dfs_final['tourney_name']=='Wimbledon']['age'], alpha=0.3)
+plt.scatter(dfs_final[dfs_final['tourney_name']=='US Open']['tourney_year'], dfs_final[dfs_final['tourney_name']=='US Open']['age'], alpha=0.3)
+
+plt.legend(['All Grand Slams Avg.','Australian Open', 'Roland Garros', 'Wimbledon', 'US Open'], loc='upper center',prop={'size': 9})
+
+```
+
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/12_age_grandslams.png "Age of Grand Slam champions from 1968")
+
+#### Retirements
+What is the evolution of retirements over time? In which tournament do we see most of these retirements?
+
+```python
+# Extract retirements
+ret_df = tennis_df[tennis_df['score'].str.contains("RET")==True][['tourney_year','tourney_level','surface','tourney_id','winner_name']]
+ref_df_f = ret_df.groupby(['tourney_year','surface'], as_index=False).agg('count')
+
+fig = plt.figure(figsize=(15,5))
+ax = fig.add_subplot(111)
+plt.style.use('seaborn-colorblind')
+
+plt.title('Retirements - Evolution of Retirements by Surface')
+plt.ylabel('Number of Retirements')
+plt.xlabel('Year')
+plt.plot(ref_df_f[ref_df_f['surface']=='Hard']['tourney_year'], ref_df_f[ref_df_f['surface']=='Hard']['tourney_id'], linestyle='solid', linewidth=2, solid_capstyle='projecting')
+plt.plot(ref_df_f[ref_df_f['surface']=='Grass']['tourney_year'], ref_df_f[ref_df_f['surface']=='Grass']['tourney_id'], linestyle='solid', marker='o', markerfacecolor='black', markersize=1, linewidth=3)
+plt.plot(ref_df_f[ref_df_f['surface']=='Clay']['tourney_year'], ref_df_f[ref_df_f['surface']=='Clay']['tourney_id'], linestyle='solid', marker='o', markerfacecolor='black', markersize=1, linewidth=3)
+plt.plot(ref_df_f[ref_df_f['surface']=='Carpet']['tourney_year'], ref_df_f[ref_df_f['surface']=='Carpet']['tourney_id'], linestyle='solid', marker='o', markerfacecolor='black', markersize=1, linewidth=3)
+
+# Calc the trendline for hard court
+x = ref_df_f[ref_df_f['surface']=='Hard']['tourney_year'].astype(int)
+y = ref_df_f[ref_df_f['surface']=='Hard']['tourney_id'].astype(int)
+z = np.polyfit(x, y, 1)
+p = np.poly1d(z)
+plt.plot(x, p(x),"r--", alpha=0.2)
+
+plt.legend(['Hard', 'Grass', 'Clay', 'Carpet'], loc='upper left', prop={'size': 14})
+```
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/13_retirements_evolution.png "Retirements by surface type")
+
+Is is just that we have more retirements because there are more matches played in that torunament or surface? What if we consider the ratio of retirements over matches played?
+
+```python
+ret_df_f = ret_df.groupby(['tourney_year','surface'], as_index=False).agg('count')[['tourney_year','surface','tourney_id']]
+ret_df_f.columns = ['tourney_year','surface','rets']
+
+notret_df = tennis_df[tennis_df['score'].str.contains("RET")==False][['tourney_year','surface','tourney_id']]
+notret_df_f = notret_df.groupby(['tourney_year','surface'], as_index=False).agg('count')[['tourney_year','surface','tourney_id']]
+notret_df_f.columns = ['tourney_year','surface','norets']
+
+dfs = (ret_df_f, notret_df_f)
+dfs_concat = pd.concat(dfs)
+
+dfs_c = dfs_concat.fillna(0).groupby(['tourney_year','surface']).agg({'rets':'sum','norets':'sum'}).reset_index()
+
+dfs_c['ret_ratio'] = np.where(dfs_c['norets']>0, dfs_c['rets']/(dfs_c['rets']+dfs_c['norets']), 1)
+
+fig = plt.figure(figsize=(15,5))
+ax = fig.add_subplot(111)
+plt.style.use('seaborn-colorblind')
+
+plt.title('Retirements - Evolution of Retirements by Surface')
+plt.yscale('log') # Using log scale
+plt.ylabel('Retirements ratio (log)')
+plt.xlabel('Year')
+
+
+plt.plot(dfs_c[dfs_c['surface']=='Hard']['tourney_year'], dfs_c[dfs_c['surface']=='Hard']['ret_ratio'], linestyle='solid', linewidth=2, solid_capstyle='projecting')
+plt.plot(dfs_c[dfs_c['surface']=='Grass']['tourney_year'], dfs_c[dfs_c['surface']=='Grass']['ret_ratio'], linestyle='solid', marker='o', markerfacecolor='black', markersize=1, linewidth=3)
+plt.plot(dfs_c[dfs_c['surface']=='Clay']['tourney_year'], dfs_c[dfs_c['surface']=='Clay']['ret_ratio'], linestyle='solid', marker='o', markerfacecolor='black', markersize=1, linewidth=3)
+
+plt.legend(['Hard','Grass', 'Clay'], loc='upper left', prop={'size': 14})
+```
+
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/14_retirements_surface.png "Retirements by surface type (log)")
+
+#### Top rivalries by decade
+What are the top rivalries in tennis' history based on the number of matches played between players? We might think Federer vs. Nadal is the biggest one but they actually haven't played the most matches together as we will see..
+
+```python
+h2h_wl = tennis_df_all.groupby(['winner_name','loser_name']).agg({'tourney_id':'count','tourney_year':'max'}).reset_index()
+h2h_wl.columns = ['player_a','player_b','total','year']
+
+h2h_lw = tennis_df_all.groupby(['loser_name','winner_name']).agg({'tourney_id':'count','tourney_year':'max'}).reset_index()
+h2h_lw.columns = ['player_a','player_b','total','year']
+
+h2h_f = h2h_wl.merge(h2h_lw, on=['player_a', 'player_b'])
+h2h_f['total'] = h2h_f['total_x'] + h2h_f['total_y']
+
+h2h_f['player_a'] = np.where(h2h_f['player_a'] < h2h_f['player_b'], h2h_f['player_a'], h2h_f['player_b'])
+h2h_f['player_b'] = np.where(h2h_f['player_a'] > h2h_f['player_b'], h2h_f['player_a'], h2h_f['player_b'])
+h2h_f['year'] = np.where(h2h_f['year_x'] > h2h_f['year_y'], h2h_f['year_x'], h2h_f['year_y'])
+h2h_f['names'] = h2h_f['player_a'].str.split(" ").str.get(1) + "-" + h2h_f['player_b'].str.split(" ").str.get(1)
+
+h2h_f2 = h2h_f.groupby(['player_a','player_b','names']).agg({'total':'max','year':'max'}).reset_index()
+h2h_f2_sorted = h2h_f2[h2h_f2['player_a']!=h2h_f2['player_b']].sort_values(['total'], ascending=False)#.head(20)
+
+h2h_f2_sorted['year_period'] = pd.cut(h2h_f2_sorted.year.astype(int), [1968, 1979, 1989, 1999, 2009, np.inf], labels=['1970s','1980s','1990s','2000s', '2010s'])
+#h2h_f2_sorted
+
+#f, ax = plt.subplots(figsize=(25, 15))
+plt.figure(figsize=(20,25))
+
+plt.subplot(5,1,1)
+ax1=sns.barplot(x="total", y="names", palette='Blues_d', data=h2h_f2_sorted[h2h_f2_sorted.year_period=='1970s'].head(10))
+ax1.set(xlabel='', ylabel='Players', title='Top 10 rivalries in 1970s')
+
+plt.subplot(5,1,2)
+ax2=sns.barplot(x="total", y="names", palette='Blues_d', data=h2h_f2_sorted[h2h_f2_sorted.year_period=='1980s'].head(10))
+ax2.set(xlabel='', ylabel='Players', title='Top 10 rivalries in 1980s')
+
+plt.subplot(5,1,3)
+ax3=sns.barplot(x="total", y="names", palette='Blues_d', data=h2h_f2_sorted[h2h_f2_sorted.year_period=='1990s'].head(10))
+ax3.set(xlabel='', ylabel='Players', title='Top 10 rivalries in 1990s')
+
+plt.subplot(5,1,4)
+ax4=sns.barplot(x="total", y="names", palette='Blues_d', data=h2h_f2_sorted[h2h_f2_sorted.year_period=='2000s'].head(10))
+ax4.set(xlabel='', ylabel='Players', title='Top 10 rivalries in 2000s')
+
+plt.subplot(5,1,5)
+ax5=sns.barplot(x="total", y="names", palette='Blues_d', data=h2h_f2_sorted[h2h_f2_sorted.year_period=='2010s'].head(10))
+ax5.set(xlabel='', ylabel='Players', title='Top 10 rivalries in 2010s')
+
+sns.despine(left=True, bottom=True)
+```
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/15_top_rivalries.png "Top rivalries in tennis history")
