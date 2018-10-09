@@ -176,7 +176,7 @@ t.columns=['Year','Unique_Winners']
 t.plot('Year', 'Unique_Winners', kind='line', title='Unique # of Players that Won GS and Masters Finals', legend=False)
 ```
 
-![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/8_unique_players_gs_evolution.png "Unique # of Players that Won GS and Masters Finals")
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/8_unique_players_gs_evolution.png "Unique # of Players that Won GS and Masters Finals"){: .center-image }
 
 ##### Unique # of players that won Grand Slam tournaments (by periods)
 ```python
@@ -207,7 +207,7 @@ for i, v in enumerate(x['Unique winners']):
     
 ```
 
-![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/9_unique_players_gs_ranges.png "Unique # of Players that Won GS Finals")
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/9_unique_players_gs_ranges.png "Unique # of Players that Won GS Finals"){: .center-image }
 
 #### Players' effectiveness by surface types
 Let's start with Roger again.
@@ -241,7 +241,7 @@ def plot_effectiveness(player):
 plot_effectiveness('Roger Federer')
 ```
 
-![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/10_roger_federer_effectiveness.png "Roger Federer's effectiveness by surface type")
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/10_roger_federer_effectiveness.png "Roger Federer's effectiveness by surface type"){: .center-image }
 
 Now let's see how Nadal did.
 
@@ -249,7 +249,7 @@ Now let's see how Nadal did.
 plot_effectiveness('Rafael Nadal')
 ```
 
-![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/11_rafael_nadal_effectiveness.png "Rafael Nadal's effectiveness by surface type")
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/11_rafael_nadal_effectiveness.png "Rafael Nadal's effectiveness by surface type"){: .center-image }
 
 #### Age of Grand Slam champions over time
 
@@ -280,7 +280,7 @@ plt.legend(['All Grand Slams Avg.','Australian Open', 'Roland Garros', 'Wimbledo
 
 ```
 
-![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/12_age_grandslams.png "Age of Grand Slam champions from 1968")
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/12_age_grandslams.png "Age of Grand Slam champions from 1968"){: .center-image }
 
 #### Retirements
 What is the evolution of retirements over time? In which tournament do we see most of these retirements?
@@ -311,7 +311,7 @@ plt.plot(x, p(x),"r--", alpha=0.2)
 
 plt.legend(['Hard', 'Grass', 'Clay', 'Carpet'], loc='upper left', prop={'size': 14})
 ```
-![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/13_retirements_evolution.png "Retirements by surface type")
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/13_retirements_evolution.png "Retirements by surface type"){: .center-image }
 
 Is is just that we have more retirements because there are more matches played in that torunament or surface? What if we consider the ratio of retirements over matches played?
 
@@ -347,7 +347,7 @@ plt.plot(dfs_c[dfs_c['surface']=='Clay']['tourney_year'], dfs_c[dfs_c['surface']
 plt.legend(['Hard','Grass', 'Clay'], loc='upper left', prop={'size': 14})
 ```
 
-![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/14_retirements_surface.png "Retirements by surface type (log)")
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/14_retirements_surface.png "Retirements by surface type (log)"){: .center-image }
 
 #### Top rivalries by decade
 What are the top rivalries in tennis' history based on the number of matches played between players? We might think Federer vs. Nadal is the biggest one but they actually haven't played the most matches together as we will see..
@@ -396,4 +396,4 @@ ax5.set(xlabel='', ylabel='Players', title='Top 10 rivalries in 2010s')
 
 sns.despine(left=True, bottom=True)
 ```
-![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/15_top_rivalries.png "Top rivalries in tennis history")
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/15_top_rivalries.png "Top rivalries in tennis history"){: .center-image }
