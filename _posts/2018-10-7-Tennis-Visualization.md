@@ -84,8 +84,8 @@ This box plot helps us compare the distribution of aces in each surface type. We
 ```python
 plt.figure(figsize=(20,4))
 
-countries = {'ARG':'Argentina','ESP':'Spain','SUI':'Switzerland','USA':'United States'}
-colors = ['blue','magenta','red','grey']
+countries = {'ARG':'Argentina','ESP':'Spain','SUI':'Switzerland','USA':'United States','SRB':'Serbia'}
+colors = ['blue','magenta','red','grey','black']
 
 i=1
 for k,v in countries.items():
@@ -96,6 +96,7 @@ for k,v in countries.items():
     plt.xlabel('Year')
     plt.title(v+' in GS')
     i=i+1
+    
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/4_plots_countries.png "Evolution of specific countries based on their players wins")
 
