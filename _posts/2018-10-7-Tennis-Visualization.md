@@ -71,13 +71,11 @@ In this graph we are using a [scatter plot](https://matplotlib.org/api/_as_gen/m
 
 ```python
 tennis_df_h = tennis_df[~np.isnan(tennis_df['w_ace']) & (tennis_df['tourney_level'].isin(['G','M'])) ].copy()
-
 g = sns.boxplot(x="surface", y="w_ace", data=tennis_df_h)
-
 g.set(xlabel='Surface', ylabel='Aces')
 ```
 
-![Box Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/3_box_plot_surface.png "Box plot of aces by surface type")
+![Box Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/3_box_plot_surface.png "Box plot of aces by surface type"){: .center-image }
 
 This box plot helps us compare the distribution of aces in each surface type. We can see, for example, that the median and maximum number of aces is much higher in grass than in clay.
 
@@ -86,16 +84,18 @@ This box plot helps us compare the distribution of aces in each surface type. We
 ```python
 plt.figure(figsize=(20,4))
 
-plt.subplot(1,5,1)
+countries = {'ARG':'Argentina','ESP':'Spain','SUI':'Switzerland','USA':'United States'}
+colors = ['blue','magenta','red','grey']
 
-s = tennis_df[(tennis_df['tourney_level'] == 'G') & (tennis_df['winner_ioc'].isin(['ARG']))].groupby(['tourney_year','winner_ioc'], as_index=False).agg('count')
-
-plt.plot(s['tourney_year'], s['tourney_id'], color='blue', linestyle='dashed', marker='o', markerfacecolor='blue', markersize=2)
-
-plt.ylabel('Number of Wins')
-plt.xlabel('Year')
-plt.title('Argentina in GS')
-
+i=1
+for k,v in countries.items():
+    plt.subplot(1,5,i)
+    s = tennis_df[(tennis_df['tourney_level'] == 'G') & (tennis_df['winner_ioc'].isin([k]))].groupby(['tourney_year','winner_ioc'], as_index=False).agg('count')
+    plt.plot(s['tourney_year'], s['tourney_id'], color=colors[i-1], linestyle='dashed', marker='o', markerfacecolor='blue', markersize=2)
+    plt.ylabel('Number of Wins')
+    plt.xlabel('Year')
+    plt.title(v+' in GS')
+    i=i+1
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/4_plots_countries.png "Evolution of specific countries based on their players wins")
 
@@ -120,9 +120,9 @@ final.columns = ['Player','Aces']
 final = final.sort_values('Aces',ascending=True)
 final.plot('Player','Aces', kind='barh', title='Players with Most Aces', legend=False)
 ```
-![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/5_most_aces_barplot.png "Players with Most Aces")
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/5_most_aces_barplot.png "Players with Most Aces"){: .center-image }
 
--> ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/6_most_df_barplot.png "Players with Most Double Falts") <-
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/6_most_df_barplot.png "Players with Most Double Falts"){: .center-image }
 
 #### Players' performance over time
 
@@ -373,9 +373,7 @@ h2h_f2 = h2h_f.groupby(['player_a','player_b','names']).agg({'total':'max','year
 h2h_f2_sorted = h2h_f2[h2h_f2['player_a']!=h2h_f2['player_b']].sort_values(['total'], ascending=False)#.head(20)
 
 h2h_f2_sorted['year_period'] = pd.cut(h2h_f2_sorted.year.astype(int), [1968, 1979, 1989, 1999, 2009, np.inf], labels=['1970s','1980s','1990s','2000s', '2010s'])
-#h2h_f2_sorted
 
-#f, ax = plt.subplots(figsize=(25, 15))
 plt.figure(figsize=(20,25))
 
 plt.subplot(5,1,1)
