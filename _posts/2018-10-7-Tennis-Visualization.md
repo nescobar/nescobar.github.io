@@ -124,3 +124,38 @@ final.plot('Player','Aces', kind='barh', title='Players with Most Aces', legend=
 
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/6_most_df_barplot.png "Players with Most Double Falts")
 
+#### Roger Federer: Evolution over time
+
+```python
+from matplotlib.ticker import MultipleLocator, StrMethodFormatter
+
+def plot_history_player(player):
+    
+    # Create dataframe with winner_name = player
+    pldf_1 = tennis_df[(tennis_df['winner_name'] == player)].groupby(['tourney_year','tourney_level'], as_index=False).agg(['count'])
+    pldf_2 = pldf_1['tourney_id'].reset_index()
+
+    fig = plt.figure(figsize=(15,5))
+    ax = fig.add_subplot(111)
+    ax.set_prop_cycle(plt.cycler('color', plt.cm.jet(np.linspace(0, 1, 5))))
+
+	# Use to define xticks as multiples of 2
+    plt.gca().xaxis.set_major_locator(MultipleLocator(2))
+    plt.gca().xaxis.set_major_formatter(StrMethodFormatter("{x:.0f}"))
+
+    plt.title(player+' - Total Wins by Tournament Type by Year')
+    plt.ylabel('Number of Wins')
+    plt.xlabel('Year')
+
+	# Plot tournaments by type
+    plt.plot(pldf_2[pldf_2['tourney_level']=='G']['tourney_year'], pldf_2[pldf_2['tourney_level']=='G']['count'], marker='o', markerfacecolor='black', markersize=2, linewidth=3)
+    plt.plot(pldf_2[pldf_2['tourney_level']=='M']['tourney_year'], pldf_2[pldf_2['tourney_level']=='M']['count'], linestyle='dotted')
+    plt.plot(pldf_2[pldf_2['tourney_level']=='F']['tourney_year'], pldf_2[pldf_2['tourney_level']=='F']['count'], linestyle='dotted')
+    plt.plot(pldf_2[pldf_2['tourney_level']=='D']['tourney_year'], pldf_2[pldf_2['tourney_level']=='D']['count'], linestyle='dotted')
+    plt.plot(pldf_2[pldf_2['tourney_level']=='A']['tourney_year'], pldf_2[pldf_2['tourney_level']=='A']['count'], linestyle='dotted')
+
+    plt.legend(['Grand_Slams', 'Masters', 'Tour_Finals', 'Davis_Cup', 'ATP'], loc='upper right', prop={'size': 10})
+    
+plot_history_player('Roger Federer')
+```
+![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/7_roger_federer_evolution.png "Roger Federer's wins over time")
