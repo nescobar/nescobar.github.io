@@ -27,7 +27,7 @@ First let's derive two new columns to store year and year-month attributes.
 ```python
 # Extract year and month in YYYYMM format
 tennis_df['tourney_yearmonth'] = tennis_df.tourney_date.astype(str).str[:6]
-## Extract year in YYYY format
+# Extract year in YYYY format
 tennis_df['tourney_year'] = tennis_df.tourney_date.astype(str).str[:4]
 ```
 
@@ -51,24 +51,31 @@ for i in range(1,9):
 
 #### Evolution of winners' rankings in Grand Slam finals
 
+In this graph we are using a [scatter plot](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html) to represent rankings of players that won Grand Slam finals in each year. The size of the bubble indicates the ranking of the player that lost the match (the smaller the bubble, the better the ranking).
+
+We see slight differences between Grand Slams winners' rankings. In the US Open, rankings are more dispersed, meaning that more players with lower rankings were able to win the tournament. Also, looking at the size of the bubbles, losers had also lower rankings.
+
 ```python
+# List of Grand Slams 
 tourneys = ['Australian Open','Roland Garros','Wimbledon','US Open']
 
+# Create dataframe with data of finals where winner_rank values are not null
 tennis_df_1 = tennis_df[~np.isnan(tennis_df['winner_rank']) & (tennis_df['round']=='F')].copy()
 plt.figure(figsize=(20,4))
 
+# Create one plot for each Grand Slam
 for i in range(1,5):
     plt.subplot(1,4,i)
     plt.title(tourneys[i-1])
     plt.scatter(tennis_df_1[tennis_df_1['tourney_name']==tourneys[i-1]]['tourney_year'],tennis_df_1[tennis_df_1['tourney_name']==tourneys[i-1]]['winner_rank'], s=tennis_df_1['loser_rank'])
     plt.gca().invert_yaxis()
+    plt.ylim(50,-5)
     plt.xlabel('Year')
     plt.ylabel('Winner Ranking')
 ```
 
 ![Scatter Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/2_scatter_plot.png "Scatter plot of Winners' Rankings")
 
-In this graph we are using a [scatter plot](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html) to represent rankings of players that won Grand Slam finals in each year. The size of the bubble indicates the ranking of the player that lost the match (the smaller the bubble, the better the ranking).
 
 #### Distribution of aces by surface type
 
