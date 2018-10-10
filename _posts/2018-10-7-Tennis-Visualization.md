@@ -7,7 +7,7 @@ published: true
 ---
 In this post I will make use of Python's libraries: pandas, matplotlib and seaborn to analyze data from **ATP tennis competitions from the year 1968 up to 2018**, including Grand Slams, Masters Series, Masters Cup and International Series competitions.
 
-The __[dataset](https://github.com/JeffSackmann/tennis_atp)__ prepared by __[Jeff Sackmann](https://github.com/JeffSackmann)__ contains information on every single match played since 1968. It includes details such as match’s date, location, tournament type, surface, winner and loser, score, duration and additional statistics such as players’ rankings, age and height, aces, double faults, break points faced and saved, service points among other helpful stats for both players.
+The __[dataset](https://github.com/JeffSackmann/tennis_atp)__ prepared by __[Jeff Sackmann](https://github.com/JeffSackmann){:target="_blank"}__ contains information on every single match played since 1968. It includes details such as match’s date, location, tournament type, surface, winner and loser, score, duration and additional statistics such as players’ rankings, age and height, aces, double faults, break points faced and saved, service points among other helpful stats for both players.
 
 The full notebook can be accessed [here](https://github.com/nescobar/data-analysis/blob/master/atp_tennis_analytics_refactored.ipynb){:target="_blank"}.
 
@@ -22,18 +22,22 @@ tennis_df = pd.concat((pd.read_csv(f) for f in files))
 ```
 
 ### Deriving new columns
-I derive two new columns to store year and year/month attributes.
+First let's derive two new columns to store year and year-month attributes.
 
 ```python
-# YYYYMM of the tournament
+# Extract year and month in YYYYMM format
 tennis_df['tourney_yearmonth'] = tennis_df.tourney_date.astype(str).str[:6]
-## YYYY of the tournament
+## Extract year in YYYY format
 tennis_df['tourney_year'] = tennis_df.tourney_date.astype(str).str[:4]
 ```
 
-### Exploratory Data Analysis
+### Exploratory Data Analysis (EDA)
 
 #### Distribution of most important attributes
+We start the EDA by looking at the distribution of some of the key attributes. [Histograms](https://en.wikipedia.org/wiki/Histogram){:target="_blank"} are very helpful to represent numerical distributions of the underlying data. 
+
+In the histograms below we see that attributes like _winnerrank_ and _loserrank_ are skewed to the right (median much lower than mean). On the other hand, we see attributes like _winner_ht_ and _loser_ht_ are closer to a normal distribution.   
+
 ```python
 dimensions = ['winner_rank','loser_rank','winner_age','loser_age','winner_ht',
 'loser_ht','w_svpt','l_svpt']
