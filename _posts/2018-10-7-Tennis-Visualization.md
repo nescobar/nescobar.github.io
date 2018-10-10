@@ -51,7 +51,7 @@ for i in range(1,9):
 
 #### Evolution of winners' rankings in Grand Slam finals
 
-In this graph we are using a [scatter plot](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html) to represent rankings of players that won Grand Slam finals in each year. The size of the bubble indicates the ranking of the player that lost the match (the smaller the bubble, the better the ranking).
+In the following graph we are using a [scatter plot](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html) to represent rankings of players that won Grand Slam finals in each year. The size of the bubble indicates the ranking of the player that lost the match (the smaller the bubble, the better the ranking).
 
 We see slight differences between Grand Slams winners' rankings. In the US Open, rankings are more dispersed, meaning that more players with lower rankings were able to win the tournament. Also, looking at the size of the bubbles, losers had also lower rankings.
 
@@ -79,6 +79,8 @@ for i in range(1,5):
 
 #### Distribution of aces by surface type
 
+Box plots are also useful to understand distributions by looking at what are called the __five number summary__: minimum, first quartile, median, third quartile and maximum. In the plot below I compare the distribution of aces in each surface type. We can see, for example, that the median and maximum number of aces is much higher in grass than in clay.
+
 ```python
 tennis_df_h = tennis_df[~np.isnan(tennis_df['w_ace']) & (tennis_df['tourney_level'].isin(['G','M'])) ].copy()
 g = sns.boxplot(x="surface", y="w_ace", data=tennis_df_h)
@@ -86,8 +88,6 @@ g.set(xlabel='Surface', ylabel='Aces')
 ```
 
 ![Box Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/3_box_plot_surface.png "Box plot of aces by surface type"){: .center-image }
-
-This box plot helps us compare the distribution of aces in each surface type. We can see, for example, that the median and maximum number of aces is much higher in grass than in clay.
 
 #### Evolution of specific countries based on their players wins'
 
