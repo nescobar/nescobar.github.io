@@ -9,7 +9,7 @@ In this post I will make use of Python's libraries: pandas, matplotlib and seabo
 
 The __[dataset](https://github.com/JeffSackmann/tennis_atp)__ prepared by __[Jeff Sackmann](https://github.com/JeffSackmann)__ contains information on every single match played since 1968. It includes details such as match’s date, location, tournament type, surface, winner and loser, score, duration and additional statistics such as players’ rankings, age and height, aces, double faults, break points faced and saved, service points among other helpful stats for both players.
 
-The full notebook can be accessed [here](https://kaggle.com/nescobar/data-visualizations-of-atp-tennis-competitions/).
+The full notebook can be accessed [here](https://github.com/nescobar/data-analysis/blob/master/atp_tennis_analytics_refactored.ipynb){:target="_blank"}.
 
 ### Loading the data
 There is one _.csv_ file per year per tournament type. In this analysis I'm only loading _atp_matches_YYYY_ files which contain the ATP matches for that year. 
