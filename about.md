@@ -2,14 +2,23 @@
 layout: page
 title: About
 permalink: /about/
+published: true
 ---
 
-Some information about you!
+I work at Tigo, a telecommunications company in Paraguay. We use a lot of data to drive our decisions!  My interests include exploratory data analysis and machine learning applied to real world problems. I'm also an avid tennis player so you might find a few posts that combine my passions!
 
-### More Information
+Last but not least, I'm a graduate student at the (online) Masters of Data Science from Indiana University, Bloomington. Currently on my last semester!
 
-A place to include any other types of information that you'd like to include about yourself.
+### Toolkit
+
+_Web site_: Jekyll, ProseIO with GitHub pages
+_Data environment_: Jupyter Notebook, PyCharm
+_Python libraries_: pandas, numpy, scikit-learn, matplotlib, seaborn
+
+### Publications
+
+- [Analysis of Hurricane Harvey related tweets during and after impact] (https://zenodo.org/record/1287897#.WyBtHFMvwWr)
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[nicoej@gmail.com](mailto:nicoej@gmail.com)
