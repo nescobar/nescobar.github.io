@@ -148,13 +148,14 @@ final.plot('Player','Aces', kind='barh', title='Players with Most Aces', legend=
 
 Ivanisevic, Sampras, Lopez, Rusedski are players in both lists. Aces are higher risk serves so it makes sense that the incidence of double faults is also higher in those players.
 
-#### Players' performance over time
+#### Players' _win_ performance over time
 
 How did top players perform over time? Since I'm a big Federer fan, we shall start with the (current) Grand Slam record holder.
 
 ```python
 from matplotlib.ticker import MultipleLocator, StrMethodFormatter
 
+# Function that plots the history of wins of a particular player
 def plot_history_player(player):
     
     # Create dataframe with winner_name = player
@@ -184,7 +185,7 @@ plot_history_player('Roger Federer')
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/7_roger_federer_evolution.png "Roger Federer's wins over time")
 
-The swiss started with ATP wins in 1998 reaching his peak in 2003 when he started winning many Grand Slam matches as well. 
+The Swiss started with ATP wins in 1998 reaching his peak in 2003 when he started winning  Grand Slam matches as well. 
 
 Now, let's see how Nadal did over the years..
 
@@ -198,8 +199,10 @@ We see a similar behaviour in the case of Rafa. He reaches a peak in ATP matches
 #### Dominance
 ##### Unique number of players that won Grand Slam and Master tournaments (by year)
 
+How many unique players won the biggest tournaments per year since 1968?
+
 ```python
-# Unique number of tournament winner per year from 2000 to 2016 (show dominance of top players)
+# Unique number of players that won GS and Masters per year 
 s = tennis_df[(tennis_df['round']=='F')&(tennis_df['tourney_level'].isin(['M','G']))].groupby(['tourney_year']).agg({'winner_name':'nunique'})
 t= s.reset_index()
 t.columns=['Year','Unique_Winners']
@@ -208,9 +211,13 @@ t.plot('Year', 'Unique_Winners', kind='line', title='Unique # of Players that Wo
 
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/8_unique_players_gs_evolution.png "Unique # of Players that Won GS and Masters Finals"){: .center-image }
 
-##### Unique # of players that won Grand Slam tournaments (by periods)
+
+##### Unique number of players that won Grand Slam tournaments (by periods)
+
+We know that the last decade in tennis was pretty much dominated by few players (Federer, Nadal, Djokovic). Let's look at that in a plot.
+
 ```python
-# Unique number of tournament winner per year from 2000 to 2016 (show dominance of top players)
+# Unique number of players that won GS and Masters per period 
 s = tennis_df[(tennis_df['round']=='F')&(tennis_df['tourney_level'].isin(['G']))&(tennis_df['tourney_year'].between('1975','1985'))].agg({'winner_name':'nunique'})
 t = tennis_df[(tennis_df['round']=='F')&(tennis_df['tourney_level'].isin(['G']))&(tennis_df['tourney_year'].between('1986','1996'))].agg({'winner_name':'nunique'})
 u = tennis_df[(tennis_df['round']=='F')&(tennis_df['tourney_level'].isin(['G']))&(tennis_df['tourney_year'].between('1997','2007'))].agg({'winner_name':'nunique'})
@@ -238,6 +245,8 @@ for i, v in enumerate(x['Unique winners']):
 ```
 
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/9_unique_players_gs_ranges.png "Unique # of Players that Won GS Finals"){: .center-image }
+
+Dominance is pretty clear in this graph. There were between 15 and 17 unique winners in the three previous periods and only 7 in the last decade!
 
 #### Players' effectiveness by surface types
 Let's start with Roger again.
