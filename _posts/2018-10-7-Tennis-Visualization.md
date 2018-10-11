@@ -35,8 +35,7 @@ tennis_df['tourney_year'] = tennis_df.tourney_date.astype(str).str[:4]
 
 #### Distribution of most important attributes
 We start the EDA by looking at the distribution of some of the key attributes. [Histograms](https://en.wikipedia.org/wiki/Histogram){:target="_blank"} are very helpful to represent numerical distributions of the underlying data. 
-
-In the histograms below we see that attributes like _winnerrank_ and _loserrank_ are skewed to the right (median much lower than mean). On the other hand, we see attributes like _winner_ht_ and _loser_ht_ are closer to a normal distribution.   
+  
 
 ```python
 dimensions = ['winner_rank','loser_rank','winner_age','loser_age','winner_ht',
@@ -49,11 +48,12 @@ for i in range(1,9):
 ```
 ![Histograms]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/1_histograms.png "Histograms of key variables")
 
+In the histograms above we see that attributes like _winnerrank_ and _loserrank_ are skewed to the right (median much lower than mean). On the other hand, we see attributes like _winner_ht_ and _loser_ht_ are closer to a normal distribution. 
+
 #### Evolution of winners' rankings in Grand Slam finals
 
 In the following graph we are using a [scatter plot](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html) to represent rankings of players that won Grand Slam finals in each year. The size of the bubble indicates the ranking of the player that lost the match (the smaller the bubble, the better the ranking).
 
-We see slight differences between Grand Slams winners' rankings. In the US Open, rankings are more dispersed, meaning that more players with lower rankings were able to win the tournament. Also, looking at the size of the bubbles, losers had also lower rankings.
 
 ```python
 # List of Grand Slams 
@@ -76,10 +76,12 @@ for i in range(1,5):
 
 ![Scatter Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/2_scatter_plot.png "Scatter plot of Winners' Rankings")
 
+We see slight differences between Grand Slams winners' rankings. In the US Open, rankings are more dispersed, meaning that more players with lower rankings were able to win the tournament. Also, looking at the size of the bubbles, losers had also lower rankings.
+
 
 #### Distribution of aces by surface type
 
-Box plots are also useful to understand distributions by looking at what are called the __five number summary__: minimum, first quartile, median, third quartile and maximum. In the plot below I compare the distribution of aces in each surface type. We can see, for example, that the median and maximum number of aces is much higher in grass than in clay.
+Box plots are also useful to understand distributions by looking at what are called the __five number summary__: minimum, first quartile, median, third quartile and maximum. 
 
 ```python
 tennis_df_h = tennis_df[~np.isnan(tennis_df['w_ace']) & (tennis_df['tourney_level'].isin(['G','M'])) ].copy()
@@ -89,7 +91,11 @@ g.set(xlabel='Surface', ylabel='Aces')
 
 ![Box Plot]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/3_box_plot_surface.png "Box plot of aces by surface type"){: .center-image }
 
+In this plot I compare the distribution of aces in each surface type. We can see, for example, that the median and maximum number of aces is much higher in grass than in clay courts. This makes sense for us tennis followers, as grass is a faster surface than clay.
+
 #### Evolution of specific countries based on their players wins'
+
+If we consider countries of current top players (Nadal, Federer, Del Potro, Djokovic, Isner), how did players of these countries perform over the years?
 
 ```python
 plt.figure(figsize=(20,4))
@@ -110,7 +116,12 @@ for k,v in countries.items():
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/4_plots_countries.png "Evolution of specific countries based on their players wins")
 
+Argentina, Spain and Switzerland show a huge jump in the number of wins in Grand Slams in the early 2000s that coincides with the appearances of legendary players like Coria, Nalbandian, Gaudio, Del Potro (Argentina), Robredo, Nadal (Spain) and Federer, Wawrinka (Switzerland). United States on the other hand, shows a big drop in wins after the 80s. Legends like Sampras, Agassi, Chang and others made it very difficult for the new generation to level their records. The case of Serbia is difficult to analyze because of political reasons: the country become independent in the early 2000s (before it was part of Yugoslavia).
+
 #### Players with most aces and double falts
+
+Aces in tennis are points won by serves that are not touched by the receiver. Double falts on the other hand, are points lost by the server because of two missed serves. Here, I would like to see the players that hit the most aces in history and the ones with the most double faults. Do we find players in both lists?
+
 ```python
 # Create dataframe with details on aces by winners of each match
 sw = tennis_df.groupby(['winner_name']).agg({'w_ace':'sum'}).fillna(0).sort_values(['w_ace'], ascending=False)
@@ -135,7 +146,11 @@ final.plot('Player','Aces', kind='barh', title='Players with Most Aces', legend=
 
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/6_most_df_barplot.png "Players with Most Double Falts"){: .center-image }
 
+Ivanisevic, Sampras, Lopez, Rusedski are players in both lists. Aces are higher risk serves so it makes sense that the incidence of double faults is also higher in those players.
+
 #### Players' performance over time
+
+How did top players perform over time? Since I'm a big Federer fan, we shall start with the (current) Grand Slam record holder.
 
 ```python
 from matplotlib.ticker import MultipleLocator, StrMethodFormatter
@@ -169,12 +184,16 @@ plot_history_player('Roger Federer')
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/7_roger_federer_evolution.png "Roger Federer's wins over time")
 
+The swiss started with ATP wins in 1998 reaching his peak in 2002 when he started winning many Grand Slam matches as well. 
+
 Now, let's see how Nadal did over the years..
 
 ```python
 plot_history_player('Rafael Nadal')
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/7_rafael_nadal_evolution.png "Rafael Nadal's wins over time")
+
+We see a similar behaviour in the case of Rafa. He reaches a peak in ATP matches wins and then starts winning more Grand Slam matches. This happens in both players because when they start competing, they play a lot of (ATP) tournaments until they get to a point where they focus on the major tournaments (Masters, Grand Slams, few 500 ATP). 
 
 #### Dominance
 ##### Unique number of players that won Grand Slam and Master tournaments (by year)
