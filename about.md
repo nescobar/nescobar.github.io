@@ -11,9 +11,9 @@ Last but not least, I'm a graduate student at the (online) Masters of Data Scien
 
 ### Toolkit
 
-_Web site_: Jekyll, ProseIO with GitHub pages
-_Data environment_: Jupyter Notebook, PyCharm
-_Python libraries_: pandas, numpy, scikit-learn, matplotlib, seaborn
+- _Web site_: Jekyll, ProseIO with GitHub pages
+- _Data environment_: Jupyter Notebook, PyCharm
+- _Python libraries_: pandas, numpy, scikit-learn, matplotlib, seaborn
 
 ### Publications
 
