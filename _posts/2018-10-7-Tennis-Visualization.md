@@ -249,11 +249,14 @@ for i, v in enumerate(x['Unique winners']):
 Dominance is pretty clear in this graph. There were between 15 and 17 unique winners in the three previous periods and only 7 in the last decade!
 
 #### Players' effectiveness by surface types
+What is the effectiveness of top ranked players? Effectiveness is measured by the number of wins over the total matches played.
+
 Let's start with Roger again.
 
 ```python
 from matplotlib.ticker import MultipleLocator, StrMethodFormatter
 
+# Function to plot effectiveness of a player
 def plot_effectiveness(player):
     pw = tennis_df[(tennis_df['winner_name'] == player)].groupby(['tourney_year','surface'], as_index=False).agg(['count'])
     pww = pw['tourney_id'].reset_index()
@@ -282,6 +285,8 @@ plot_effectiveness('Roger Federer')
 
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/10_roger_federer_effectiveness.png "Roger Federer's effectiveness by surface type"){: .center-image }
 
+Federer's effectiveness reached its peak between 2005 and 2010, reaching up to 100% on grass tournaments with a good performance on hard courts as well. The effectiveness on clay on the other hand considerably lower.
+
 Now let's see how Nadal did.
 
 ```python
@@ -290,10 +295,14 @@ plot_effectiveness('Rafael Nadal')
 
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/11_rafael_nadal_effectiveness.png "Rafael Nadal's effectiveness by surface type"){: .center-image }
 
+Nadal shows a strong effectiveness on clay tournaments (no surprise here, as he is named the King of Clay). 
+
 #### Age of Grand Slam champions over time
 
+Are Grand Slams champions younger or older as time goes by? In which Grand Slams do we find the youngest and oldest champions?
+
 ```python
-# What is the average age of Grand Slams' players from 1968 up to 2016?
+# Create dataframe with age of winners filtering Grand Slam finals 
 tennis_df_win=tennis_df[tennis_df['tourney_level'].isin(['G'])&(tennis_df['round']=='F')].dropna(subset=['winner_age'])
 dfw = tennis_df_win[['tourney_year','tourney_name','winner_name','winner_age']]
 dfw.columns = ['tourney_year','tourney_name','player','age']
@@ -320,6 +329,8 @@ plt.legend(['All Grand Slams Avg.','Australian Open', 'Roland Garros', 'Wimbledo
 ```
 
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/12_age_grandslams.png "Age of Grand Slam champions from 1968"){: .center-image }
+
+The first Grand Slams champions were in their 30s but then in mid-1970 younger champions emerged. The average age became pretty stable after that until around 2010 where we see a steady increase in the average age of champions. So, what happened here? Legends started getting older but they kept on winning titles: Federer won his 20th Grand Slam in 2018 Australian Open with 36 years of age!
 
 #### Retirements
 What is the evolution of retirements over time? In which tournament do we see most of these retirements?
@@ -352,7 +363,7 @@ plt.legend(['Hard', 'Grass', 'Clay', 'Carpet'], loc='upper left', prop={'size': 
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/13_retirements_evolution.png "Retirements by surface type"){: .center-image }
 
-Is is just that we have more retirements because there are more matches played in that torunament or surface? What if we consider the ratio of retirements over matches played?
+Is is just that we have more retirements because there are more matches played in that particular torunament or surface? What if we consider the ratio of retirements over matches played?
 
 ```python
 ret_df_f = ret_df.groupby(['tourney_year','surface'], as_index=False).agg('count')[['tourney_year','surface','tourney_id']]
@@ -378,7 +389,6 @@ plt.yscale('log') # Using log scale
 plt.ylabel('Retirements ratio (log)')
 plt.xlabel('Year')
 
-
 plt.plot(dfs_c[dfs_c['surface']=='Hard']['tourney_year'], dfs_c[dfs_c['surface']=='Hard']['ret_ratio'], linestyle='solid', linewidth=2, solid_capstyle='projecting')
 plt.plot(dfs_c[dfs_c['surface']=='Grass']['tourney_year'], dfs_c[dfs_c['surface']=='Grass']['ret_ratio'], linestyle='solid', marker='o', markerfacecolor='black', markersize=1, linewidth=3)
 plt.plot(dfs_c[dfs_c['surface']=='Clay']['tourney_year'], dfs_c[dfs_c['surface']=='Clay']['ret_ratio'], linestyle='solid', marker='o', markerfacecolor='black', markersize=1, linewidth=3)
@@ -388,8 +398,12 @@ plt.legend(['Hard','Grass', 'Clay'], loc='upper left', prop={'size': 14})
 
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/14_retirements_surface.png "Retirements by surface type (log)"){: .center-image }
 
+This plot, which uses a log-scale, shows that there is effectively an upward trend in retirements ratio, although not specific to any surface.
+
 #### Top rivalries by decade
-What are the top rivalries in tennis' history based on the number of matches played between players? We might think Federer vs. Nadal is the biggest one but they actually haven't played the most matches together as we will see..
+What are the top rivalries in tennis' history based on the number of matches played between players? 
+
+We might think Federer vs. Nadal is the biggest rivalry but they actually haven't played the most matches together as we shall see..
 
 ```python
 h2h_wl = tennis_df_all.groupby(['winner_name','loser_name']).agg({'tourney_id':'count','tourney_year':'max'}).reset_index()
@@ -436,3 +450,33 @@ ax5.set(xlabel='', ylabel='Players', title='Top 10 rivalries in 2010s')
 sns.despine(left=True, bottom=True)
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/15_top_rivalries.png "Top rivalries in tennis history"){: .center-image }
+
+### Key insights
+
+To summarize, the key insights that I got from this analysis are:
+
+- Grass and hard courts have a higher incidence in the number of aces.
+
+- Many players appear in both rankings of top aces and double faults in history. More aces could mean taking higher risks that could lead to a higher number of double faults.
+
+- In the last ten years of professional tennis only 7 players have won most of the big tournaments as compared to an average of 16 players in previous decades.
+
+- The average age of champions increased in the last few years. This seems to be due to dominance from the same players that were getting older each year.
+
+- There is an upward trend in retirements ratio in recent years with no clear difference between surface types.
+
+- In the 80s rivalries were more even. In the 90s there was a rivalry that stood out and in the 2010s the rivalries were shared between few players with a higher number of encounters.
+
+### Conclusion and future work
+
+Well, I hope you have enjoyed this analysis as much I enjoyed working on it! 
+
+There is definitely much more that could be done with this data, here are a few ideas:
+
+- Answers additional questions like:
+	- Who are the players that reverted most matches in Grand Slam tournaments? (e.g. ended up winning after losing two sets to zero)
+	- Who are the players with the longest winning and losing streaks?
+
+- Apply unsupervised ML techniques to create players segmentation based on statistics like aces, scores, retirements, etc.
+
+- Apply supervised ML techniques to predict future performance of players
