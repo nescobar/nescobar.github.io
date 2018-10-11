@@ -116,7 +116,7 @@ for k,v in countries.items():
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/4_plots_countries.png "Evolution of specific countries based on their players wins")
 
-Argentina, Spain and Switzerland show a huge jump in the number of wins in Grand Slams in the early 2000s that coincides with the appearances of legendary players like Coria, Nalbandian, Gaudio, Del Potro (Argentina), Robredo, Nadal (Spain) and Federer, Wawrinka (Switzerland). United States on the other hand, shows a big drop in wins after the 80s. Legends like Sampras, Agassi, Chang and others made it very difficult for the new generation to level their records. The case of Serbia is difficult to analyze because of political reasons: the country become independent in the early 2000s (before it was part of Yugoslavia).
+Argentina, Spain and Switzerland show a huge jump in the number of wins in Grand Slams in the early 2000s that coincides with the appearances of legendary players like Coria, Nalbandian, Gaudio, Del Potro (Argentina), Robredo, Nadal (Spain) and Federer, Wawrinka (Switzerland). United States on the other hand, shows a big drop in wins after the 80s. Legends like Sampras, Agassi, Chang and others made it very difficult for the new generation to level their records. The case of Serbia is difficult to analyze because of political reasons: the country became independent in the early 2000s (before it was part of Yugoslavia). However, even if we consider this fact we have to acknowledge that the appearance of Djokovic put Serbia in the spotlight.
 
 #### Players with most aces and double falts
 
@@ -184,7 +184,7 @@ plot_history_player('Roger Federer')
 ```
 ![Plots]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/7_roger_federer_evolution.png "Roger Federer's wins over time")
 
-The swiss started with ATP wins in 1998 reaching his peak in 2002 when he started winning many Grand Slam matches as well. 
+The swiss started with ATP wins in 1998 reaching his peak in 2003 when he started winning many Grand Slam matches as well. 
 
 Now, let's see how Nadal did over the years..
 
