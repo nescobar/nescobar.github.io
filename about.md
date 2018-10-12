@@ -5,7 +5,7 @@ permalink: /about/
 published: true
 ---
 
-I work at Tigo, a telecommunications company in Paraguay. We use a lot of data to drive our decisions!  My interests include exploratory data analysis and machine learning applied to real world problems. I'm also an avid tennis player so you might find a few posts that combine my passions!
+I work at [Tigo](http://www.tigo.com.py), a telecommunications company from Paraguay that is part of the [Millicom](http://www.millicom.com) Group. We use a lot of data to drive our decisions!  My interests include exploratory data analysis and machine learning applied to real world problems. I'm also an avid tennis player so you might find a few posts that combine my passions!
 
 Last but not least, I'm a graduate student at the (online) Masters of Data Science from Indiana University, Bloomington. Currently on my last semester!
 
@@ -17,7 +17,7 @@ Last but not least, I'm a graduate student at the (online) Masters of Data Scien
 
 ### Publications
 
-- [Analysis of Hurricane Harvey related tweets during and after impact] (https://zenodo.org/record/1287897#.WyBtHFMvwWr)
+- [Analysis of Hurricane Harvey related tweets during and after impact](https://zenodo.org/record/1287897#.WyBtHFMvwWr)
 
 ### Contact me
 
