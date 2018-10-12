@@ -48,7 +48,7 @@ for i in range(1,9):
 ```
 ![Histograms]({{ site.baseurl }}/images/2018-10-7-Tennis-Visualization/1_histograms.png "Histograms of key variables")
 
-In the histograms above we see that attributes like _winnerrank_ and _loserrank_ are skewed to the right (median much lower than mean). On the other hand, we see attributes like _winner_ht_ and _loser_ht_ are closer to a normal distribution. 
+In the histograms above we see that attributes like _winner_rank_ and _loser_rank_ are skewed to the right (median lower than the mean). On the other hand, we see attributes like _winner_ht_ and _loser_ht_ which are closer to a normal distribution (bell shaped). 
 
 #### Evolution of winners' rankings in Grand Slam finals
 
