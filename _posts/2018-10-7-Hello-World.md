@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Data Guasu
-published: true
+published: false
 ---
 
 Welcome to **Data Guasu**! In this blog I will be sharing opinions, ideas, experiences and details of projects I have worked on, and my journey to becoming a _data passionist_ (due to the impostor syndrome I'm having trouble calling myself a data scientist). 
