@@ -12,7 +12,7 @@ Now, where does _Guasu_ come from? It comes from Guarani (one of the official la
 
 ![_config.yml]({{ site.baseurl }}/images/Chipa_Guasu.jpg)
 
-_Traditional Chipa Guasu dish from Paraguay._ [Source](http://micorazondearroz.com)
+*(_Traditional Chipa Guasu dish from Paraguay._ [Source](http://micorazondearroz.com))*
 
 ## My Journey
 
