@@ -9,6 +9,9 @@ published: true
 Desde hace ya unos años, las **redes sociales se volvieron el medio de comunicación
 preferido de los ciudadanos para realizar reclamos** relacionados a la provisión de servicios públicos e infraestructura (electricidad, agua potable, recolección de basura, reportes de baches, etc.)
 
+![bache.jpeg]({{site.baseurl}}/images/2018-10-21-Analisis-Twitter-MuniAsu/bache.jpeg){: .center-image }
+*([Fuente](http://www.lavozdigital.com.py/noticia.php?id=10658&id_categoria=9){:target="_blank"})*
+
 Si bien esto produjo un avance importante en la comunicación ciudadanía-autoridades, el
 exceso y la velocidad de generación de la información impide tener un análisis certero de los reclamos como para reaccionar de manera eficaz, entender la causa raíz y prevenir futuros eventos.
 
