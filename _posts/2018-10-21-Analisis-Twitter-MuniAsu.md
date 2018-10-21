@@ -1,5 +1,9 @@
 ---
-published: false
+layout: post
+title: Utilizando Twitter para Monitorear los Reclamos de la Ciudadanía (1)
+categories: data visualization
+tags: 'data_visualization, seaborn, matplotlib, paraguay, asuncion, nlp'
+published: true
 ---
 ## Utilizando Twitter para Monitorear los Reclamos de la Ciudadanía (1)
 
