@@ -25,7 +25,7 @@ Entender esto nos ayudaría por ejemplo a responder las siguientes preguntas:
 Con el objetivo de lograr un entendimiento más profundo que nos permita responder a
 estas y otras preguntas, utilizamos los tweets o publicaciones realizadas en Twitter donde se mencionan a **la Municipalidad de Asunción** ([@AsuncionMuni](https://twitter.com/AsuncionMuni){:target="_blank"}) y al **Intendente** ([@FerreiroMario1](https://twitter.com/Ferreiromario1){:target="_blank"}).  
 
-Twitter provee una interfaz de aplicación (API) que permite extraer publicaciones en tiempo real o de los últimos 7 días. Si bien existen ciertas limitaciones en cuanto a la cantidad de tweets que se pueden obtener y la historia en la versión gratuita, hay alternativas para obtener publicaciones más antiguas, como [Get Old Tweets (GOT)](https://bit.ly/2pm3LlI){:target="_blank"}. En el caso de este análisis utilizamos la librería GOT para **recolectar 70.000 tweets desde Octubre, 2017 hasta Octubre, 2018** con menciones a las autoridades, excluyendo las respuestas de los usuarios ([@AsuncionMuni](https://twitter.com/AsuncionMuni){:target="_blank"}) y ([@FerreiroMario1](https://twitter.com/Ferreiromario1){:target="_blank"}).
+Twitter provee una interfaz de aplicación (API) que permite extraer publicaciones en tiempo real o de los últimos 7 días. Si bien existen ciertas limitaciones en cuanto a la cantidad de tweets que se pueden obtener y la historia en la versión gratuita, hay alternativas para obtener publicaciones más antiguas, como [Get Old Tweets (GOT)](https://bit.ly/2pm3LlI){:target="_blank"}. En el caso de este análisis, utilizamos la librería GOT para **recolectar 70.000 tweets desde Octubre, 2017 hasta Octubre, 2018** con menciones a las autoridades.
 
 En esta primera parte no voy a entrar en detalles técnicos de la implementación, con el objetivo de hacer amena la lectura a quienes no tengan conocimientos de programación. La idea es incluir un paso a paso en la segunda parte.
 
@@ -110,4 +110,3 @@ Si bien estos son temas conocidos, el análisis puede servir de herramienta tant
 - Priorizar acciones de acuerdo a la intensidad de las publicaciones
 
 En la próxima entrega, me voy a enfocar en los **detalles técnicos de la implementación** de tal forma a compartir las técnicas utilizadas para aquellos interesados en aplicar las mismas a diferentes problemas de análisis textuales.
-
