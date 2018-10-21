@@ -3,6 +3,9 @@ published: false
 ---
 ## Utilizando Twitter para Monitorear los Reclamos de la Ciudadanía (1)
 
+![bache.jpeg]({{site.baseurl}}/images/2018-10-21-Analisis-Twitter-MuniAsu/bache.jpeg)
+
+
 ### Problemática 
 
 Desde hace ya unos años, las **redes sociales se volvieron el medio de comunicación
@@ -63,6 +66,23 @@ Observando el gráfico de arriba podemos argumentar lo siguiente:
 - El pico de menciones de **inundaciones** ocurre en Octubre de 2018 y coincide con las [lluvias intensas que dejaron raudales](http://www.abc.com.py/nacionales/raudales-causan-estragos-durante-tormenta-1747540.html) y ocasionaron destrozos.
 - Entre Julio y Agosto de 2018 se observan picos de menciones de **baches**, probablemente relacionados a la aparición de baches en zonas muy concurridas.
 
+### Análisis de Sentimiento de las Publicaciones
+
+El análisis de sentimiento es una técnica que permite asignar un valor númerico o _score_ a un texto de acuerdo al contenido. Un score alto indica un contenido con sentimiento positivo y un score bajo, con sentimiento negativo. 
+
+Abajo vemos dos ejemplos:
+
+#### positivo (score: 0.87)
+> _Visita del Presidente @ MaritoAbdo al intendente @ Ferreiromario1 . Me llama gratamente la atención, la cercanía y sencillez del presidente._ 
+
+#### negativo (score: 0.002)
+> _inútil, ahora recapaste la bicisenda jajaja, un asco es asuncion, una vergüenza zurdito, hace algo haragán_
+
+En este análisis utilizo un modelo desarrollado por [Elliot Hofman](https://github.com/aylliote/senti-py) que asigna _scores_ de sentimiento a los textos de acuerdo al contenido. 
+
+![Historico de Sentimiento de Tweets]({{site.baseurl}}/images/2018-10-21-Analisis-Twitter-MuniAsu/historico_sentimiento.png)
+
+La gráfica muestra el _score promedio de sentimiento_ en el último año. 
 
 
 
