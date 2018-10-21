@@ -47,14 +47,21 @@ Con el objetivo de entender la evolución de reclamos de los temas más crítico
 
 - **Bache**
 - **Basura**
-- **Inundaciones**: 
-- **Dengue**: 
+- **Inundaciones**
+- **Dengue**
 
 Para cada categoría definí una lista de palabras relacionadas y utilice [expresiones regulares](https://platzi.com/blog/expresiones-regulares-python/) para identificar patrones. Por ejemplo, en el caso de basura incluí _basura*, vertedero*, recicla*, desecho*, tóxico*, escombro*_. Los asteriscos indican que luego de la palabra pueden seguir 0 o más caracteres (ej. **recicla**do, **recicla**je, **recicla**mos). 
 
 Existen  otras formas más avanzadas de clasificar tweets realizando anotaciones manuales y utilizando esto para entrenar modelos supervisados de Machine Learning. Sin embargo, para esta primera parte del análisis las expresiones regulares hacen un muy buen trabajo.
 
 ![Temas Criticos por Dia]({{site.baseurl}}/images/2018-10-21-Analisis-Twitter-MuniAsu/historico_menciones_new.png)
+
+Observando el gráfico de arriba podemos argumentar lo siguiente:
+
+- El pico de menciones de **dengue** ocurre en Marzo de 2018 que coincide con la [epidemia de la enfermedad](http://www.abc.com.py/nacionales/aprueban-emergencia-por-dengue-1681564.html). 
+- En el mes de la epidemia, existe un alta correlación de menciones de **basura** y **dengue**.
+- El pico de menciones de **inundaciones** ocurre en Octubre de 2018 y coincide con las [lluvias intensas que dejaron raudales](http://www.abc.com.py/nacionales/raudales-causan-estragos-durante-tormenta-1747540.html) y ocasionaron destrozos.
+- Entre Julio y Agosto de 2018 se observan picos de menciones de **baches**, probablemente relacionados a la aparición de baches en zonas muy concurridas.
 
 
 
