@@ -31,9 +31,28 @@ En esta primera parte no voy a entrar en detalles técnicos de la implementació
 
 Las nubes de palabras o _word clouds_ permiten visualizar las palabras más frecuentes de un texto utilizando el tamaño para representar la frecuencia o importancia. En este caso, las palabras se extraen de los últimos 2000 tweets publicados donde se mencionan a la Intendencia de Asunción.
 
-Podemos observar que palabras como **calle**, **zona** y **bache** son las más mencionadas en las publicaciones. También aparecen con menor destaque **favor**, **basura**, **gente** y **gracias**. Esto puede indicar interacciones frecuentes entre los ciudadanos y las autoridades donde se realizan reclamos (favor) y se agradecen (gracias) las respuestas. 
+Podemos observar que palabras como **calle**, **zona** y **bache** son las más mencionadas en las publicaciones. También aparecen con menor destaque **favor**, **basura**, **gente** y **gracias**. Esto puede indicar interacciones frecuentes entre los ciudadanos y las autoridades, donde los ciudadanos realizan reclamos (por _favor_) y las autoridades agradecen (gracias) las informaciones. 
+
+#### favor
+
+> _Urgente por **favor** agente de tránsito desde las 06:00 horas frente al Botánico_
+
+#### gracias
+
+> _Buenas tardes, **gracias** por indicarnos en la brevedad posible los compañeros estarán por el lugar. Saludos!_
 
 ### Evolución de Reclamos por Categoría
+
+Con el objetivo de entender la evolución de reclamos de los temas más críticos, procedí a la clasificación de los tweets en las siguientes categorias:
+
+- **Bache**
+- **Basura**
+- **Inundaciones**: 
+- **Dengue**: 
+
+Para cada categoría definí una lista de palabras relacionadas y utilice [expresiones regulares](https://platzi.com/blog/expresiones-regulares-python/) para identificar patrones. Por ejemplo, en el caso de basura incluí _basura*, vertedero*, recicla*, desecho*, tóxico*, escombro*_. Los asteriscos indican que luego de la palabra pueden seguir 0 o más caracteres (ej. **recicla**do, **recicla**je, **recicla**mos). 
+
+Existen  otras formas más avanzadas de clasificar tweets realizando anotaciones manuales y utilizando esto para entrenar modelos supervisados de Machine Learning. Sin embargo, para esta primera parte del análisis las expresiones regulares hacen un muy buen trabajo.
 
 ![Temas Criticos por Dia]({{site.baseurl}}/images/2018-10-21-Analisis-Twitter-MuniAsu/historico_menciones_new.png)
 
