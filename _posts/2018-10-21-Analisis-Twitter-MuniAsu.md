@@ -69,7 +69,7 @@ Observando el gráfico de arriba podemos argumentar lo siguiente:
 
 ### Análisis de Sentimiento de las Publicaciones
 
-El análisis de sentimiento es una técnica que permite asignar un valor númerico o _score_ a un texto de acuerdo al contenido. Un score alto indica un contenido con sentimiento positivo y un score bajo, con sentimiento negativo. 
+El análisis de sentimiento es una técnica que permite asignar un valor numérico o _score_ a un texto de acuerdo al contenido. Un score alto indica un contenido con sentimiento positivo y un score bajo, con sentimiento negativo. 
 
 Abajo vemos dos ejemplos:
 
@@ -83,7 +83,7 @@ En este análisis se utiliza un modelo desarrollado por [Elliot Hofman](https://
 
 ![Historico de Sentimiento de Tweets]({{site.baseurl}}/images/2018-10-21-Analisis-Twitter-MuniAsu/historico_sentimiento.png){: .center-image }
 
-La gráfica muestra el _score promedio del sentimiento_ de los tweets en el último año. Vemos que los promedios diarios oscilan entre 0.25 y 0.50, lo cual indica que la mayoría de las publicaciones continen mensajes principalmente negativos. 
+La gráfica muestra el _score promedio del sentimiento_ de los tweets en el último año. Vemos que los promedios diarios oscilan entre 0.25 y 0.50, lo cual indica que la mayoría de las publicaciones contienen mensajes principalmente negativos. 
 
 Si bien el score es una estimación numérica que se obtiene como resultado de un modelo estadístico y por esta razón no es siempre exacto (teniendo en cuenta, por ejemplo, las ironías), es una herramienta muy útil para medir tendencias y en este caso para evaluar el sentimiento general de los ciudadanos en el tiempo.
 
@@ -95,7 +95,7 @@ Esto puede indicar que las publicaciones que hablan de dengue, también menciona
 
 ![scatter_text_new.png]({{site.baseurl}}/images/2018-10-21-Analisis-Twitter-MuniAsu/scatter_text_new.png){: .center-image }
 
-El eje horizonal indica la frecuencia de ocurrencia de palabras en publicaciones de dengue (más frecuentes a la derecha). Por otro lado, el eje vertical hace lo mismo publicaciones de basura (más frecuentes arriba). 
+El eje horizontal indica la frecuencia de ocurrencia de palabras en publicaciones de dengue (más frecuentes a la derecha). Por otro lado, el eje vertical hace lo mismo publicaciones de basura (más frecuentes arriba). 
 
 En el extremo superior derecho vemos que se encuentra la palabra basura. Es decir, **basura es una palabra frecuentemente utilizada tanto en publicaciones de dengue como de basura**. Sin embargo, la palabra criadero aparece frecuentemente en publicaciones de dengue pero muy poco en publicaciones de basura. 
 
