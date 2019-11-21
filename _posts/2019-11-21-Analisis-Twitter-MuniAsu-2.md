@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 
 Luego de una pausa bastante prolongada (de más de un año), retomo el blog para continuar con los detalles de la implementación del análisis de tweets con menciones a la Municipalidad de Asunción. 
