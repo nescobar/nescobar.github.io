@@ -1,5 +1,8 @@
 ---
 published: true
+layout: post
+categories: data visualization
+tags: 'data_visualization, seaborn, matplotlib, paraguay, asuncion, nlp'
 ---
 
 Luego de una pausa bastante prolongada (de más de un año), retomo el blog para continuar con los detalles de la implementación del análisis de tweets con menciones a la Municipalidad de Asunción. 
