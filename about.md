@@ -7,16 +7,16 @@ published: true
 
 ### Hello!
 
-On April 2019 I moved to Copenhagen, Denmark where I get to work on fun analytics projects with massive data sets. My interests include exploratory data analysis and machine learning applied to real world problems.
+My name is Nicolas, I was and raised in Asunción, Paraguay. I'm happily married and proud father of two daughters. Passionate about *applied* data science. Federista and Olimpista.
 
-They say that if you can explain something to a child, then you have mastered the subject. That's why I like to write here about things I've learned (or currently learning). I found it's also a good practice to keep track of things that I've done and as a reference for future use.
+I’ve been working in Copenhagen, Denmark since April 2019, as a senior game analyst at a gaming company. I’m wearing multiple hats, my role involves developing processes to collect data from different sources, working on exploratory data analysis, building models (forecasting, campaign impact, customer lifetime value, ..) and dashboards to visualize information.
 
-Since I'm originally from Paraguay you will find some articles in both Spanish and English.
+In this blog I will be sharing analysis of topics I’m interested in, learnings, experiences and personal opinions. Most of my posts will be in English although you will find some in Spanish. 
 
 ### My Toolkit
 
 - _Web site_: Jekyll, ProseIO with GitHub pages
-- _Data environment_: Snowflake as Data Warehouse, Databricks Notebooks for experimenting, PyCharm for libraries and production code
+- _Data environment_: Snowflake as Data Warehouse, Databricks Notebooks for experimenting, PyCharm for ML libaries and production code
 - _ETL/EDA/ML_: Mostly PySpark, pandas on smaller datasets and sometimes R for EDA
 - _Data viz_: matplotlib, seaborn, ggplot and Tableau for business reporting
 
