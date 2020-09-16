@@ -44,13 +44,13 @@ The token is stored in what is called a [Databricks secret](https://docs.databri
 
 ## Uploading the exported file to an S3 bucket
 To be able to upload the files to the S3 bucket that is configured to host static webpages, we first retrieve the access and secret keys using Databricks secrets utility.
-The upload_to_s3 method takes the file name and actual content as parameters and creates a new file in the DBFS file store. Then, this file is uploaded to the previously defined S3 bucket.
+The _upload_to_s3_ method takes the file name and actual content as parameters and creates a new file in the DBFS file store. Then, this file is uploaded to the previously defined S3 bucket.
 
 {% gist 4a014af350613656ae5f8e86a17edf84 %}
 
 
 ## Running the export and upload
-The JSON response that we get from the export_notebook method includes all views (dashboards) related to the notebook that we executed. There, we can choose to upload to S3 as many dashboards as we need (stored in the dashboards dictionary) but in this example I'm only choosing to upload one.
+The JSON response that we get from the _export_notebook_ method includes all views (dashboards) related to the notebook that we executed. There, we can choose to upload to S3 as many dashboards as we need (stored in the dashboards dictionary) but in this example I'm only choosing to upload one.
 
 {% gist d55489476b5b0e65465fe05b37eeeb7e %}
 
