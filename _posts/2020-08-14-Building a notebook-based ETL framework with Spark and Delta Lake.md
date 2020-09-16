@@ -1,4 +1,8 @@
 ---
+layout: post
+title: Building a notebook-based ETL framework with Spark and Delta Lake
+categories: data engineering
+tags: 'data_engineering, spark, delta_lake'
 published: true
 ---
 The process of extracting, transforming and loading data from disparate sources (ETL) have become critical in the last few years with the growth of data science applications. In addition, data availability, timeliness, accuracy and consistency are key requirements at the beginning of any data project.
