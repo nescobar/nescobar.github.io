@@ -17,9 +17,9 @@ There are also cases where specialized visualization tools do not have the capab
 There are two steps in the process: first to build the Databricks dashboard that will contain the different graphs, and then to export this so that it can be accessed from Tableau. Even though the first step of generating the network graph with D3.js is really fun, in this article I will focus on the second step.
 
 ## Running the notebook
-First we need to run the notebook that have the visualizations for the dashboard we want to use. We will use the run_id of the executed notebook to export the dashboard.
+First we need to run the notebook that have the visualizations for the dashboard we want to use. We will use the _run_id_ of the executed notebook to export the dashboard.
 
-When this notebook runs, it will store the run id in a global temporary table. This is done by including the following snippet:
+When this notebook runs, it will store the _run_id_ in a global temporary table. This is done by including the following snippet:
 
 {% gist 0ff427e4396b6b31c5a0055576672fce %}
 
@@ -33,9 +33,9 @@ In a separate notebook (let's call it _network_graph_export_), we will run the n
 
 {% gist 152a8721a7ca6deff31cfb02a3e6c2ee %}
 
-We define a method that will use the previously obtained run_id and the Databricks REST API to export the Dashboard in JSON format.
+We define a method that will use the previously obtained _run_id_ and the [Databricks REST API](https://docs.databricks.com/dev-tools/api/latest/index.html) to export the Dashboard in JSON format.
 
-The ACCOUNT in the DOMAIN variable should be replaced by your own Databricks account name. The API requires a token for authentication. This personal token can be generated in the Databricks UI or via the REST API.
+The _ACCOUNT_ in the _DOMAIN_ variables should be replaced by your own Databricks account name. The API requires a token for authentication. [This personal token can be generated in the Databricks UI or via the REST API](https://docs.databricks.com/dev-tools/api/latest/authentication.html).
 
 The token is stored in what is called a [Databricks secret](https://docs.databricks.com/security/secrets/index.html). This utility can store any sort of credentials outside notebooks so that they can be retrieved when needed.
 
