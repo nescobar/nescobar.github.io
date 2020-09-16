@@ -1,5 +1,5 @@
 ---
-title: Visualize Databricks dashboards in Tableau
+title: "Visualize Databricks dashboards in\_Tableau"
 published: true
 ---
 In this article I will describe the steps to set up a notebook that exports a Databricks dashboard as an HTML file and uploads it to an S3 bucket configured for static website hosting. In Tableau, we will create a dashboard that will embed the URL where the file is located.
@@ -21,30 +21,34 @@ When this notebook runs, it will store the run id in a global temporary table. T
 
 The run_id is then extracted from the previously created view, along with the name of the notebook. A new global temporary view will be created with the name: run_id_notebook-name
 
-{% gist 152a8721a7ca6deff31cfb02a3e6c2ee %}
+{% gist af2aa30bf25c82e296d8c1e50ebb5bc8 %}
+
 
 # Exporting the Databricks notebook
 In a separate notebook (let's call it network_graph_export), we will run the notebook and get the run_id after it is executed.
 
-{% gist af2aa30bf25c82e296d8c1e50ebb5bc8 %}
-
+{% gist 152a8721a7ca6deff31cfb02a3e6c2ee %}
 
 We define a method that will use the previously obtained run_id and the Databricks REST API to export the Dashboard in JSON format.
+
 The ACCOUNT in the DOMAIN variable should be replaced by your own Databricks account name. The API requires a token for authentication. This personal token can be generated in the Databricks UI or via the REST API.
+
 As you can see, the token is stored in what is called a Databricks secret. This utility can store any sort of credentials outside notebooks so that they can be retrieved when needed.
 
+{% gist f751a9d49308d63351935601f3ac0143 %}
 
 
 ## Uploading the exported file to an S3 bucket
 To be able to upload the files to the S3 bucket that is configured to host static webpages, we first retrieve the access and secret keys using Databricks secrets utility.
 The upload_to_s3 method takes the file name and actual content as parameters and creates a new file in the DBFS file store. Then, this file is uploaded to the previously defined S3 bucket.
 
+{% gist 4a014af350613656ae5f8e86a17edf84 %}
 
 
 ## Running the export and upload
 The JSON response that we get from the export_notebook method includes all views (dashboards) related to the notebook that we executed. There, we can choose to upload to S3 as many dashboards as we need (stored in the dashboards dictionary) but in this example I'm only choosing to upload one.
 
-
+{% gist d55489476b5b0e65465fe05b37eeeb7e %}
 
 ## Embedding the Databricks dashboard in Tableau
 Finally, now that the dashboard is uploaded to S3 as an HTML static file, we will use the corresponding URL to visualize it in a Tableau dashboard. To do this, we just have to create a new dashboard and drag the Web Page object to the canvas. This will open a dialog box where you need to type the URL of the HTML file located in the S3 web hosting.
