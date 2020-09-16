@@ -2,7 +2,7 @@
 title: "Visualize Databricks dashboards in\_Tableau"
 published: true
 ---
-In this article I will describe the steps to set up a notebook that exports a Databricks dashboard as an HTML file and uploads it to an S3 bucket configured for static website hosting. In Tableau, we will create a dashboard that will embed the URL where the file is located.
+**In this article I will describe the steps to set up a notebook that exports a Databricks dashboard as an HTML file and uploads it to an S3 bucket configured for static website hosting. In Tableau, we will create a dashboard that will embed the URL where the file is located.**
 
 Notebooks and data visualization tools are important components of an enterprise data framework. Notebooks are mainly used by data scientists for exploratory data analysis, statistical modeling and machine learning. Specialized data visualization tools such as Tableau focus on providing users with a platform to quickly build interactive reports and dashboards with almost no technical background.
 
@@ -52,6 +52,9 @@ The JSON response that we get from the export_notebook method includes all views
 
 ## Embedding the Databricks dashboard in Tableau
 Finally, now that the dashboard is uploaded to S3 as an HTML static file, we will use the corresponding URL to visualize it in a Tableau dashboard. To do this, we just have to create a new dashboard and drag the Web Page object to the canvas. This will open a dialog box where you need to type the URL of the HTML file located in the S3 web hosting.
+
+![tableau-snapshot-embed-url.png]({{site.baseurl}}/_posts/tableau-snapshot-embed-url.png)
+
 
 ## And that's it!
 
