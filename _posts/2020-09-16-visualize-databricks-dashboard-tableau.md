@@ -2,7 +2,7 @@
 title: "Visualize Databricks dashboards in\_Tableau"
 published: true
 ---
-**_In this article I will describe the steps to set up a notebook that exports a Databricks dashboard as an HTML file and uploads it to an [S3 bucket configured for static website hosting](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html). In Tableau, we will create a dashboard that will embed the URL where the file is located_.**
+In this article I will describe the steps to set up a notebook that exports a Databricks dashboard as an HTML file and uploads it to an [S3 bucket configured for static website hosting](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html). In Tableau, we will create a dashboard that will embed the URL where the file is located.
 
 Notebooks and data visualization tools are important components of an enterprise data framework. Notebooks are mainly used by data scientists for exploratory data analysis, statistical modeling and machine learning. Specialized data visualization tools such as Tableau focus on providing users with a platform to quickly build interactive reports and dashboards with almost no technical background.
 
