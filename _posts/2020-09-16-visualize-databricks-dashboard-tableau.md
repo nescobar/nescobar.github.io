@@ -2,13 +2,15 @@
 title: "Visualize Databricks dashboards in\_Tableau"
 published: true
 ---
-**In this article I will describe the steps to set up a notebook that exports a Databricks dashboard as an HTML file and uploads it to an S3 bucket configured for static website hosting. In Tableau, we will create a dashboard that will embed the URL where the file is located.**
+**_In this article I will describe the steps to set up a notebook that exports a Databricks dashboard as an HTML file and uploads it to an [S3 bucket configured for static website hosting](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html). In Tableau, we will create a dashboard that will embed the URL where the file is located_.**
+
+![https://databricks.com/partners/tableau]({{site.baseurl}}/_posts/databricks-tableau-cropped.png)
 
 Notebooks and data visualization tools are important components of an enterprise data framework. Notebooks are mainly used by data scientists for exploratory data analysis, statistical modeling and machine learning. Specialized data visualization tools such as Tableau focus on providing users with a platform to quickly build interactive reports and dashboards with almost no technical background.
 
 In general, when there are new questions raised by business users which require data exploration and fast feedback, notebooks are very helpful because of their flexibility and speed to try out different paths and provide insights quickly. Even though notebooks could be exported in a friendly format and shared, many users prefer to use their enterprise standard visualization tool as an entry point to all reports and dashboards.
 
-There are also cases where specialized visualization tools do not have the capability to build advanced customized graphs. In my particular situation, I needed to build an interactive network graph with nodes and edges that were constantly being updated. After some research I found that I could use a Javascript library called D3.js which have powerful visualization capabilities. In addition, Databricks allows to embed D3.js visualizations in its notebooks, so one can integrate it with the rest of the data pipeline.
+There are also cases where specialized visualization tools do not have the capability to build advanced customized graphs. In my particular situation, I needed to build an interactive network graph with nodes and edges that were constantly being updated. After some research I found that I could use a Javascript library called [D3.js](https://d3js.org/) which have powerful visualization capabilities. In addition, [Databricks allows to embed D3.js visualizations in its notebooks](https://docs.databricks.com/notebooks/visualizations/html-d3-and-svg.html), so one can integrate it with the rest of the data pipeline.
 
 There are two steps in the process: first to build the Databricks dashboard that will contain the different graphs, and then to export this so that it can be accessed from Tableau. Even though the first step of generating the network graph with D3.js is really fun, in this article I will focus on the second step.
 
@@ -19,13 +21,13 @@ When this notebook runs, it will store the run id in a global temporary table. T
 
 {% gist 0ff427e4396b6b31c5a0055576672fce %}
 
-The run_id is then extracted from the previously created view, along with the name of the notebook. A new global temporary view will be created with the name: run_id_notebook-name
+The _run_id_ is then extracted from the previously created view, along with the name of the notebook. A new global temporary view will be created with the name: _run_id_notebook-name_
 
 {% gist af2aa30bf25c82e296d8c1e50ebb5bc8 %}
 
 
 # Exporting the Databricks notebook
-In a separate notebook (let's call it network_graph_export), we will run the notebook and get the run_id after it is executed.
+In a separate notebook (let's call it _network_graph_export_), we will run the notebook and get the run_id after it is executed.
 
 {% gist 152a8721a7ca6deff31cfb02a3e6c2ee %}
 
@@ -33,7 +35,7 @@ We define a method that will use the previously obtained run_id and the Databric
 
 The ACCOUNT in the DOMAIN variable should be replaced by your own Databricks account name. The API requires a token for authentication. This personal token can be generated in the Databricks UI or via the REST API.
 
-As you can see, the token is stored in what is called a Databricks secret. This utility can store any sort of credentials outside notebooks so that they can be retrieved when needed.
+The token is stored in what is called a [Databricks secret](https://docs.databricks.com/security/secrets/index.html). This utility can store any sort of credentials outside notebooks so that they can be retrieved when needed.
 
 {% gist f751a9d49308d63351935601f3ac0143 %}
 
