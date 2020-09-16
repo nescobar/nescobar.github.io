@@ -1,5 +1,6 @@
 ---
-published: false
+title: Visualize Databricks dashboards in Tableau
+published: true
 ---
 In this article I will describe the steps to set up a notebook that exports a Databricks dashboard as an HTML file and uploads it to an S3 bucket configured for static website hosting. In Tableau, we will create a dashboard that will embed the URL where the file is located.
 
@@ -13,17 +14,19 @@ There are two steps in the process: first to build the Databricks dashboard that
 
 # Running the notebook
 First we need to run the notebook that have the visualizations for the dashboard we want to use. We will use the run_id of the executed notebook to export the dashboard.
+
 When this notebook runs, it will store the run id in a global temporary table. This is done by including the following snippet:
 
-
+{% gist 0ff427e4396b6b31c5a0055576672fce %}
 
 The run_id is then extracted from the previously created view, along with the name of the notebook. A new global temporary view will be created with the name: run_id_notebook-name
 
-
+{% gist 152a8721a7ca6deff31cfb02a3e6c2ee %}
 
 # Exporting the Databricks notebook
 In a separate notebook (let's call it network_graph_export), we will run the notebook and get the run_id after it is executed.
 
+{% gist af2aa30bf25c82e296d8c1e50ebb5bc8 %}
 
 
 We define a method that will use the previously obtained run_id and the Databricks REST API to export the Dashboard in JSON format.
