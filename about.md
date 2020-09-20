@@ -7,9 +7,9 @@ published: true
 
 ### Hello!
 
-My name is Nicolas, I was and raised in Asunción, Paraguay. I'm happily married and proud father of two daughters. Passionate about *applied* data science. Federista and Olimpista.
+My name is Nicolas, I was born and raised in Asunción, Paraguay. I'm happily married and proud father of two daughters. Passionate about *applied* data science. Federista and Olimpista.
 
-I’ve been working in Copenhagen, Denmark since April 2019, as a senior game analyst at a gaming company. I’m wearing multiple hats, my role involves developing processes to collect data from different sources, working on exploratory data analysis, building models (forecasting, campaign impact, customer lifetime value, ..) and dashboards to visualize information.
+I’ve been working in Copenhagen, Denmark since April 2019, as a senior game analyst at a gaming company. I’m wearing multiple hats, my role involves developing processes to collect data from different sources, working on exploratory data analysis, building models and dashboards to visualize information.
 
 In this blog I will be sharing analysis of topics I’m interested in, learnings, experiences and personal opinions. Most of my posts will be in English although you will find some in Spanish. 
 
